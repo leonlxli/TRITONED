@@ -1,0 +1,37 @@
+{
+  "name": "cogs121-sp16-ass1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "models.js",
+  "dependencies": {
+    "body-parser": "1.15.0",
+    "connect-mongo": "1.1.0",
+    "cookie-parser": "1.4.1",
+    "dotenv": "2.0.0",
+    "express": "4.13.4",
+    "express-handlebars": "3.0.0",
+    "express-session": "1.13.0",
+    "method-override": "2.3.5",
+    "mongodb": "1.4.30",
+    "mongoose": "3.8.23",
+    "passport": "0.3.2",
+    "passport-twitter": "1.0.4",
+    "socket.io": "1.4.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "mongod --dbpath dbpath --logpath log/mongod.log&",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johngamboa/cogs121-sp16-ass1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johngamboa/cogs121-sp16-ass1/issues"
+  },
+  "homepage": "https://github.com/johngamboa/cogs121-sp16-ass1#readme"
+}
