@@ -69,35 +69,44 @@ app.use(passport.initialize());
 app.use(passport.session());
 /* TODO: Use Twitter Strategy for Passport here */
 // console.log(process.env.TWITTER_CONSUMER_KEY);
+
 passport.use(new TwitterStrategy({
         consumerKey: process.env.TWITTER_CONSUMER_KEY,
         consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
         callbackURL: "/auth/twitter/callback"
     },
+    //580401894
     function(token, tokenSecret, profile, done) {
+    	console.log(profile.id);
         models.User.findOne({
-            "twitterID": profile.id
+            twitterID: profile.id
         }, function(err, user) {
-        	console.log("called");
             // (1) Check if there is an error. If so, return done(err);
             if (err) {
-            	console.log(err);
                 return done(err);
             }
             if (!user) {
-                var newUser = new models.User({});
-                return done(null, {
+                var newUser = new models.User({
                     "twitterID": profile.id,
                     "token": token,
-                    "username": profile.displayName,
+                    "username": profile.screen_name,
                     "displayName": profile.displayName,
                     "photo": profile.photos[0]
                 });
                 newUser.save();
                 return done(null, profile);
             } else {
-                // (3) since the user is found, update user’s information
-                console.log(user);
+                models.User.findOneAndUpdate({"twitterID": profile.id}, {
+                	"twitterID": profile.id,
+                    "token": token,
+                    "username": profile.displayName,
+                    "displayName": profile.displayName,
+                    "photo": profile.photos[0]
+                }, function(err, user){
+                	if(err){
+                		console.log(err);
+                	}
+                })
                 process.nextTick(function() {
                     return done(null, profile);
                 });
@@ -111,10 +120,8 @@ passport.serializeUser(function(user, done) {
     done(null, user);
 });
 
-passport.deserializeUser(function(id, done) {
-    models.User.findOne({ "twitterID": id }, function(err, user) {
-    done(err, user);
-  });
+passport.deserializeUser(function(user, done) {
+    done(null, user);
 });
 // Routes
 /* TODO: Routes for OAuth using Passport */
