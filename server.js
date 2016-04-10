@@ -4,6 +4,8 @@ const app = express();
 const http = require("http").createServer(app);
 var mongoose = require('mongoose');
 var handlebars = require('express-handlebars');
+var io = require('socket.io')(http);
+
 // const io = require("socket.io")(http);
 const path = require("path");
 const session = require("express-session");
@@ -77,7 +79,7 @@ passport.use(new TwitterStrategy({
     },
     //580401894
     function(token, tokenSecret, profile, done) {
-    	console.log(profile.id);
+        console.log(profile.id);
         models.User.findOne({
             twitterID: profile.id
         }, function(err, user) {
@@ -96,18 +98,13 @@ passport.use(new TwitterStrategy({
                 newUser.save();
                 return done(null, profile);
             } else {
-                models.User.findOneAndUpdate({"twitterID": profile.id}, {
-                	"twitterID": profile.id,
-                    "token": token,
-                    "username": profile.displayName,
-                    "displayName": profile.displayName,
-                    "photo": profile.photos[0]
-                }, function(err, user){
-                	if(err){
-                		console.log(err);
-                	}
-                })
                 process.nextTick(function() {
+                    user.twitterID = profile.id;
+                    user.token = token;
+                    user.username = profile.username;
+                    user.displayName = profile.displayName;
+                    user.photo = profile.photos[0];
+                    user.save();
                     return done(null, profile);
                 });
             }
@@ -129,19 +126,46 @@ app.get("/", router.index.view);
 app.get("/chat", router.chat.view);
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback',
-  passport.authenticate('twitter', { successRedirect: '/chat',
-                                     failureRedirect: '/' }));
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
+    passport.authenticate('twitter', {
+        successRedirect: '/chat',
+        failureRedirect: '/'
+    }));
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
 });
 
 
 // More routes here if needed
 
-// io.use(function(socket, next) {
-//     session_middleware(socket.request, {}, next);
-// });
+
+io.use(function(socket, next) {
+  session_middleware(socket.request, {}, next);
+});
+
+io.on('connection', function(socket){
+  console.log('user connected');
+
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  })
+  socket.on('newsfeed', function(msg) {
+    var user = socket.request.session.passport.user;
+
+    var newNewsFeed = new models.Posts({
+      'user': {
+        'username': user.username,
+        'photo': user.photos[0].value
+      },
+      'message': msg
+    });
+    newNewsFeed.save(function(err, news) {
+      if(err) console.log(err);
+      io.emit('newsfeed', JSON.stringify(news));
+    });
+  });
+})
+
 
 /* TODO: Server-side Socket.io here */
 

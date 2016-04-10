@@ -8,4 +8,15 @@ var userSchema = mongoose.Schema({
     "photo": String
 });
 
+var postSchema = mongoose.Schema({
+  'user': {
+    'username': String,
+    'photo': String
+  },
+  'message': String,
+  'posted': { type: Date, default: Date.now() }
+});
+
+
 exports.User = mongoose.model('User', userSchema);
+exports.Posts = mongoose.model('Posts', postSchema);

@@ -2,5 +2,9 @@
 
 exports.view = function(req, res) {
     /* TODO */
-    res.render("chat", {});
+    if (req.user) {
+        res.render("chat");
+    } else {
+        res.redirect("/");
+    }
 };
