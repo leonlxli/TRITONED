@@ -149,6 +149,24 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
     console.log('user disconnected');
   })
+  socket.on('newComment', function(comment){
+    console.log('new comment');
+    console.log(comment);
+    var user = socket.request.session.passport.user;
+    console.log(comment.parent_post_id);
+    models.Posts.findOne({
+            _id: comment.parent_post_id
+        },function(err, post) {
+            console.log(comment.comment);
+            var newComment = {'username': user.username,
+        'photo': user.photos[0].value,
+        'message': comment.comment
+        }
+        post.comments.push(newComment);
+        post.save();
+        console.log(post);
+        });
+  })
   socket.on('newsfeed', function(msg) {
     var user = socket.request.session.passport.user;
 

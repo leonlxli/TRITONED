@@ -14,7 +14,8 @@ var postSchema = mongoose.Schema({
     'photo': String
   },
   'message': String,
-  'posted': { type: Date, default: Date.now() }
+  'posted': { type: Date, default: Date.now() },
+  "comments": [{ 'photo': String, 'message': String, 'username': String, 'posted': { type: Date, default: Date.now() }}]
 });
 
 

@@ -29,10 +29,17 @@
                         <br/>
                         <span class="posted">{{posted}}</span>
                     </div>
+                    <!--                     <div class="comments">
+                        {{#each newsfeed.comments}}
+                        <span class="comment_user"></span> {{/each}}
+                    </div> -->
                 </div>
                 <div class="message-content">
                     {{message}}
                 </div>
+                <form id="comment_form" action="" >
+                    <input id="comment" placeholder="Type a new message and hit enter!" autocomplete="off" name ="{{_id}}" />
+                </form>
             </li>
             {{/each}}
         </ul>

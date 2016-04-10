@@ -6,9 +6,29 @@
     e.preventDefault();
 
     var $user_input = $('#user_input')
+    console.log($user_input.val());
     socket.emit('newsfeed', $user_input.val());
     $user_input.val('');
   })
+
+
+ $('#comment_form').submit(function(e){
+    e.preventDefault();
+    console.log("Hello");
+    var $comment = $('#comment');
+    var parent_post_id = $comment.attr("name");
+    socket.emit('newComment', {"parent_post_id": parent_post_id, "comment":$comment.val()});
+    $comment.val('');
+  })
+
+  // $('#comment_form').submit(function(e){
+  //   e.preventDefault();
+
+  //   var $comment = $('#comment');
+  //   console.log(comment.val());
+  //   socket.emit('comment', $comment.val());
+  //   $comment.val('');
+  // })
 
   socket.on('newsfeed', function(data) {
     var parsedData = JSON.parse(data);
