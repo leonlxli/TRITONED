@@ -52,8 +52,8 @@
                     </li>
                     {{/each}}
                 </ul>
-                <form id="comment_form" action="">
-                    <input id="comment" placeholder="Type a new message and hit enter!" autocomplete="off" parent="{{_id}}" />
+                <form class="comment_form" action="" parent="{{_id}}">
+                    <input id="comment_{{_id}}" placeholder="Type a new message and hit enter!" autocomplete="off" parent="{{_id}}"/>
                 </form>
             </li>
             {{/each}}

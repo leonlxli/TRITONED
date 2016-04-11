@@ -12,11 +12,12 @@
     })
 
 
-    $('#comment_form').submit(function(e) {
-
+    $('.comment_form').submit(function(e) {
         e.preventDefault();
-        var $comment = $('#comment');
-        var parent_post_id = $comment.attr("parent");
+        var parent_post_id = $(this).attr("parent")
+        console.log("hi");
+        // console.log(parent_post_id);
+        var $comment = $('#comment_'+parent_post_id);
         socket.emit('newComment', {
             "parent_post_id": parent_post_id,
             "comment": $comment.val()
@@ -26,6 +27,8 @@
 
 
     socket.on('newComment', function(data) {
+        console.log("recieved comment");
+        console.log(data);
         var parsedData = JSON.parse(data);
         parsedData.posted = new Date(parsedData.posted);
         $('#' + parsedData.parent_id).append($('<li>').html(commentTemplate(parsedData)));
