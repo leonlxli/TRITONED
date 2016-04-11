@@ -29,6 +29,7 @@ var parser = {
 
 var strategy = { /* TODO */ };
 
+
 // Database Connection
 var db = mongoose.connection;
 console.log(process.env.MONGOLAB_URI);
@@ -38,6 +39,7 @@ db.on('error', console.error.bind(console, 'Mongo DB Connection Error:'));
 db.once('open', function(callback) {
     console.log("Database connected successfully.");
 });
+
 
 // session middleware
 var session_middleware = session({
@@ -140,50 +142,49 @@ app.get('/logout', function(req, res) {
 
 
 io.use(function(socket, next) {
-  session_middleware(socket.request, {}, next);
+    session_middleware(socket.request, {}, next);
 });
 
-io.on('connection', function(socket){
-  console.log('user connected');
+io.on('connection', function(socket) {
+    console.log('user connected');
 
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  })
-  socket.on('newComment', function(comment){
-    console.log('new comment');
-    console.log(comment);
-    var user = socket.request.session.passport.user;
-    console.log(comment.parent_post_id);
-    models.Posts.findOne({
+    socket.on('disconnect', function() {
+        console.log('user disconnected');
+    })
+    socket.on('newComment', function(comment) {
+        var user = socket.request.session.passport.user;
+        models.Posts.findOne({
             _id: comment.parent_post_id
-        },function(err, post) {
-            console.log(comment.comment);
-            var newComment = {'username': user.username,
-        'photo': user.photos[0].value,
-        'message': comment.comment
-        }
-        post.comments.push(newComment);
-        post.save();
-        console.log(post);
+        }, function(err, post) {
+            var newComment = {
+                'username': user.username,
+                'photo': user.photos[0].value,
+                'message': comment.comment,
+            }
+            post.comments.push(newComment);
+            post.save(function(err, news) {
+                if (err) console.log(err);
+                newComment['parent_id'] = comment.parent_post_id
+                io.emit('newComment', JSON.stringify(newComment));
+            });
         });
-  })
-  socket.on('newsfeed', function(msg) {
-    var user = socket.request.session.passport.user;
+    })
+    socket.on('newsfeed', function(msg) {
+        var user = socket.request.session.passport.user;
 
-    var newNewsFeed = new models.Posts({
-      'user': {
-        'username': user.username,
-        'photo': user.photos[0].value
-      },
-      'message': msg
+        var newNewsFeed = new models.Posts({
+            'user': {
+                'username': user.username,
+                'photo': user.photos[0].value
+            },
+            'message': msg
+        });
+        newNewsFeed.save(function(err, news) {
+            if (err) console.log(err);
+            io.emit('newsfeed', JSON.stringify(news));
+        });
     });
-    newNewsFeed.save(function(err, news) {
-      if(err) console.log(err);
-      io.emit('newsfeed', JSON.stringify(news));
-    });
-  });
 })
-
 
 /* TODO: Server-side Socket.io here */
 
