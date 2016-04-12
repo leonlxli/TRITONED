@@ -18,7 +18,8 @@ var db = mongoose.connection;
 
 var router = {
     index: require("./routes/index"),
-    chat: require("./routes/chat")
+    chat: require("./routes/chat"),
+    newPost: require("./routes/newPost")
 };
 
 var parser = {
@@ -120,6 +121,8 @@ passport.deserializeUser(function(user, done) {
 // Routes
 app.get("/", router.index.view);
 app.get("/chat", router.chat.view);
+app.get("/newPost", router.newPost.view);
+app.post("/newPost", router.newPost.post);
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback',
     passport.authenticate('twitter', {
