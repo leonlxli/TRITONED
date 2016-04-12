@@ -146,49 +146,67 @@ io.use(function(socket, next) {
 });
 
 io.on('connection', function(socket) {
-    console.log('user connected');
+            console.log('user connected');
 
-    socket.on('disconnect', function() {
-        console.log('user disconnected');
-    })
-    socket.on('newComment', function(comment) {
-        var user = socket.request.session.passport.user;
-        models.Posts.findOne({
-            _id: comment.parent_post_id
-        }, function(err, post) {
-            var newComment = {
-                'username': user.username,
-                'photo': user.photos[0].value,
-                'message': comment.comment,
-            }
-            post.comments.push(newComment);
-            post.save(function(err, news) {
-                if (err) console.log(err);
-                newComment['parent_id'] = comment.parent_post_id
-                io.emit('newComment', JSON.stringify(newComment));
+            socket.on('disconnect', function() {
+                    console.log('user disconnected');
+                })
+                // socket.on('newComment', function(comment) {
+                //     var user = socket.request.session.passport.user;
+                //     models.Posts.findOne({
+                //         _id: comment.parent_post_id
+                //     }, function(err, post) {
+                //         var newComment = {
+                //             'username': user.username,
+                //             'photo': user.photos[0].value,
+                //             'message': comment.comment,
+                //         }
+                //         post.comments.push(newComment);
+                //         post.save(function(err, news) {
+                //             if (err) console.log(err);
+                //             newComment['parent_id'] = comment.parent_post_id
+                //             io.emit('newComment', JSON.stringify(newComment));
+                //         });
+                //     });
+                // })
+            socket.on('getGym', function(Thisgym) {
+                console.log("Helloooooo");
+                app.get("/chat", function(req, res) {
+                    console.log("test");
+                    mongoose.model('Posts').find({gym:Thisgym}).sort({
+                        date: -1
+                    }).exec(function(err, posts) {
+                        console.log(posts);
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            res.render("chat", {
+                                'newsfeed': posts
+                            });
+                        }
+                    });
+                })
             });
-        });
-    })
-    socket.on('newsfeed', function(msg) {
-        var user = socket.request.session.passport.user;
+                socket.on('newsfeed', function(msg) {
+                    var user = socket.request.session.passport.user;
 
-        var newNewsFeed = new models.Posts({
-            'user': {
-                'username': user.username,
-                'photo': user.photos[0].value
-            },
-            'message': msg
-        });
-        newNewsFeed.save(function(err, news) {
-            if (err) console.log(err);
-            io.emit('newsfeed', JSON.stringify(news));
-        });
-    });
-})
+                    var newNewsFeed = new models.Posts({
+                        'user': {
+                            'username': user.username,
+                            'photo': user.photos[0].value
+                        },
+                        'message': msg
+                    });
+                    newNewsFeed.save(function(err, news) {
+                        if (err) console.log(err);
+                        io.emit('newsfeed', JSON.stringify(news));
+                    });
+                });
+            })
 
-/* TODO: Server-side Socket.io here */
+            /* TODO: Server-side Socket.io here */
 
-// Start Server
-http.listen(app.get("port"), function() {
-    console.log("Express server listening on port " + app.get("port"));
-});
+            // Start Server
+            http.listen(app.get("port"), function() {
+                console.log("Express server listening on port " + app.get("port"));
+            });

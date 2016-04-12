@@ -1,29 +1,38 @@
+var socket = io();
+
+function gymChange(){
+  console.log("Hello");
+  var myselect = document.getElementById("current_gym");
+  var gym = myselect.options[myselect.selectedIndex].value;
+  socket.emit('getGym', gym);
+}
+
 (function($) {
     "use strict";
 
-    var socket = io();
     $('#send_message').submit(function(e) {
         e.preventDefault();
 
         var $user_input = $('#user_input')
         console.log($user_input.val());
         socket.emit('newsfeed', $user_input.val());
-        $user_input.val('');
+        // $user_input.val('');
     })
 
 
-    $('.comment_form').submit(function(e) {
-        e.preventDefault();
-        var parent_post_id = $(this).attr("parent")
-        console.log("hi");
-        // console.log(parent_post_id);
-        var $comment = $('#comment_'+parent_post_id);
-        socket.emit('newComment', {
-            "parent_post_id": parent_post_id,
-            "comment": $comment.val()
-        });
-        $comment.val('');
-    })
+    // $('.comment_form').submit(function(e) {
+
+    //     e.preventDefault();
+    //     var parent_post_id = $(this).attr("parent")
+    //     console.log("hi");
+    //     // console.log(parent_post_id);
+    //     var $comment = $('#comment_'+parent_post_id);
+    //     socket.emit('newComment', {
+    //         "parent_post_id": parent_post_id,
+    //         "comment": $comment.val()
+    //     });
+    //     $comment.val('');
+    // })
 
 
     socket.on('newComment', function(data) {
@@ -76,8 +85,10 @@
                 '</div> <ul class="comments" id="' +
                 template._id + 
                 '"></ul>' +
-                '<form id="comment_form" action="">' +
-                '<input id="comment" placeholder="Type a new message and hit enter!" autocomplete="off" parent="' +
+                '<form class="comment_form" action=""parent="'+ 
+                template._id +
+                 '">' +
+                '<input id="comment'+template._id +'" placeholder="Type a new message and hit enter!" autocomplete="off" parent="' +
                 template._id +
                 '" />' +
                 '</form>';

@@ -13,9 +13,12 @@
 </header>
 <section>
     <div id="inner">
-        <form id="send_message" action="">
-            <input id="user_input" placeholder="Type a new message and hit enter!" autocomplete="off" />
-        </form>
+        <select id="current_gym" onChange="gymChange()">
+            <option value="all">All</option>
+            <option value="Rimac">Rimac</option>
+            <option value="Main_Gym">Main Gym</option>
+            <option value="CanyonView">Canyon View Gym</option>
+        </select>
         <ul id="messages">
             {{#each newsfeed}}
             <hr>
@@ -33,28 +36,6 @@
                 <div class="message-content">
                     {{message}}
                 </div>
-                <ul class="comments" id="{{_id}}">
-                    {{#each comments}}
-                    <li >
-                        <div class="user">
-                            <div class="user-image">
-                                <img src="{{photo}}" alt="">
-                            </div>
-                            <div class="user-info">
-                                <span class="username">{{username}}</span>
-                                <br/>
-                                <span class="posted">{{posted}}</span>
-                            </div>
-                            <div class="message-content">
-                                <p>{{message}}</p>
-                            </div>
-                        </div>
-                    </li>
-                    {{/each}}
-                </ul>
-                <form class="comment_form" action="" parent="{{_id}}">
-                    <input id="comment_{{_id}}" placeholder="Type a new message and hit enter!" autocomplete="off" parent="{{_id}}"/>
-                </form>
             </li>
             {{/each}}
         </ul>

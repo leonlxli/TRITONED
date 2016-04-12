@@ -9,6 +9,7 @@ var userSchema = mongoose.Schema({
 });
 
 var postSchema = mongoose.Schema({
+  'gym': String,
   'user': {
     'username': String,
     'photo': String
@@ -17,7 +18,6 @@ var postSchema = mongoose.Schema({
   'posted': { type: Date, default: Date.now() },
   "comments": [{ 'photo': String, 'message': String, 'username': String, 'posted': { type: Date, default: Date.now() }}]
 });
-
 
 exports.User = mongoose.model('User', userSchema);
 exports.Posts = mongoose.model('Posts', postSchema);
