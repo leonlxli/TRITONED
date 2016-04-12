@@ -120,7 +120,6 @@ passport.deserializeUser(function(user, done) {
 // Routes
 app.get("/", router.index.view);
 app.get("/chat", router.chat.view);
-app.post("/chat", router.chat.view);
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback',
     passport.authenticate('twitter', {
