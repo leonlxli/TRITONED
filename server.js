@@ -11,7 +11,6 @@ const path = require("path");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const passport = require('passport');
-const TwitterStrategy = require('passport-twitter').Strategy;
 
 require("dotenv").load();
 var models = require("./models");
@@ -27,7 +26,9 @@ var parser = {
     cookie: require("cookie-parser")
 };
 
-var strategy = { /* TODO */ };
+var strategy = {
+  Twitter: require('passport-twitter').Strategy
+};
 
 
 // Database Connection
@@ -62,28 +63,22 @@ app.set("view engine", "html");
 app.set("views", __dirname + "/views");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(parser.cookie());
-app.use(parser.body.urlencoded({
-    extended: true
-}));
+app.use(parser.body.urlencoded({ extended: true }));
 app.use(parser.body.json());
 app.use(require('method-override')());
 app.use(session_middleware);
-/* TODO: Passport Middleware Here*/
 app.use(passport.initialize());
 app.use(passport.session());
-/* TODO: Use Twitter Strategy for Passport here */
-// console.log(process.env.TWITTER_CONSUMER_KEY);
 
-passport.use(new TwitterStrategy({
+passport.use(new strategy.Twitter({
         consumerKey: process.env.TWITTER_CONSUMER_KEY,
         consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
         callbackURL: "/auth/twitter/callback"
     },
-    //580401894
     function(token, tokenSecret, profile, done) {
         console.log(profile.id);
         models.User.findOne({
-            twitterID: profile.id
+          twitterID: profile.id
         }, function(err, user) {
             // (1) Check if there is an error. If so, return done(err);
             if (err) {
@@ -114,18 +109,18 @@ passport.use(new TwitterStrategy({
     }
 ));
 
-/* TODO: Passport serialization here */
 passport.serializeUser(function(user, done) {
-    done(null, user);
+  done(null, user);
 });
 
 passport.deserializeUser(function(user, done) {
-    done(null, user);
+  done(null, user);
 });
+
 // Routes
-/* TODO: Routes for OAuth using Passport */
 app.get("/", router.index.view);
 app.get("/chat", router.chat.view);
+app.post("/chat", router.chat.view);
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback',
     passport.authenticate('twitter', {
@@ -169,24 +164,24 @@ io.on('connection', function(socket) {
                 //         });
                 //     });
                 // })
-            socket.on('getGym', function(Thisgym) {
-                console.log("Helloooooo");
-                app.get("/chat", function(req, res) {
-                    console.log("test");
-                    mongoose.model('Posts').find({gym:Thisgym}).sort({
-                        date: -1
-                    }).exec(function(err, posts) {
-                        console.log(posts);
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            res.render("chat", {
-                                'newsfeed': posts
-                            });
-                        }
-                    });
-                })
-            });
+            // socket.on('getGym', function(Thisgym) {
+            //     console.log("Helloooooo");
+            //     app.get("/chat", function(req, res) {
+            //         console.log("test");
+            //         mongoose.model('Posts').find({gym:Thisgym}).sort({
+            //             date: -1
+            //         }).exec(function(err, posts) {
+            //             console.log(posts);
+            //             if (err) {
+            //                 console.log(err);
+            //             } else {
+            //                 res.render("chat", {
+            //                     'newsfeed': posts
+            //                 });
+            //             }
+            //         });
+            //     })
+            // });
                 socket.on('newsfeed', function(msg) {
                     var user = socket.request.session.passport.user;
 
@@ -206,7 +201,6 @@ io.on('connection', function(socket) {
 
             /* TODO: Server-side Socket.io here */
 
-            // Start Server
-            http.listen(app.get("port"), function() {
-                console.log("Express server listening on port " + app.get("port"));
-            });
+http.listen(app.get("port"), function() {
+    console.log("Express server listening on port " + app.get("port"));
+});

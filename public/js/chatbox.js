@@ -1,10 +1,44 @@
 var socket = io();
+var xhttp = new XMLHttpRequest();
 
-function gymChange(){
-  console.log("Hello");
-  var myselect = document.getElementById("current_gym");
-  var gym = myselect.options[myselect.selectedIndex].value;
-  socket.emit('getGym', gym);
+function gymChange() {
+    console.log("Hello");
+    var myselect = document.getElementById("current_gym");
+    var gym = myselect.options[myselect.selectedIndex].value;
+    var data = new FormData();
+    data.append('gym', gym);
+    $.get('/chat', {
+        gym: gym
+    }, function(data) {
+        $('#messages').empty();
+        for (var i = 0; i < data.newsfeed.length; i++) {
+            $('#messages').append($('<li>').html(messageTemplate(data.newsfeed[i])));
+        }
+    });
+
+    // socket.emit('getGym', gym);
+
+}
+
+function messageTemplate(template) {
+    console.log("template:");
+    console.log(template);
+
+    var result =
+        '<hr>' +
+        '<div class="user">' +
+        '<div class="user-image">' +
+        '<img src="' + template.user.photo + '" alt="">' +
+        '</div>' +
+        '<div class="user-info">' +
+        '<span class="username">' + template.user.username + '</span><br/>' +
+        '<span class="posted">' + template.posted + '</span>' +
+        '</div>' +
+        '</div>' +
+        '<div class="message-content">' +
+        template.message +
+        '</div>';
+    return result;
 }
 
 (function($) {
@@ -66,33 +100,5 @@ function gymChange(){
         var parsedData = JSON.parse(data);
         parsedData.posted = new Date(parsedData.posted);
         $('#messages').prepend($('<li>').html(messageTemplate(parsedData)));
-
-        function messageTemplate(template) {
-            console.log("template:");
-            console.log(template);
-
-            var result = '<div class="user">' +
-                '<div class="user-image">' +
-                '<img src="' + template.user.photo + '" alt="">' +
-                '</div>' +
-                '<div class="user-info">' +
-                '<span class="username">' + template.user.username + '</span><br/>' +
-                '<span class="posted">' + template.posted + '</span>' +
-                '</div>' +
-                '</div>' +
-                '<div class="message-content">' +
-                template.message +
-                '</div> <ul class="comments" id="' +
-                template._id + 
-                '"></ul>' +
-                '<form class="comment_form" action=""parent="'+ 
-                template._id +
-                 '">' +
-                '<input id="comment'+template._id +'" placeholder="Type a new message and hit enter!" autocomplete="off" parent="' +
-                template._id +
-                '" />' +
-                '</form>';
-            return result;
-        }
     });
 })($);
