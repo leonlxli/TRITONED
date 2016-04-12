@@ -11,6 +11,8 @@
     "express": "4.13.4",
     "express-handlebars": "3.0.0",
     "express-session": "1.13.0",
+    "jquery": "^2.2.3",
+    "materialize-css": "^0.97.6",
     "method-override": "2.3.5",
     "mongodb": "1.4.30",
     "mongoose": "3.8.23",
@@ -22,7 +24,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "mongod --dbpath dbpath --logpath log/mongod.log&",
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
