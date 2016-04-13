@@ -27,8 +27,7 @@ exports.view = function(req, res) {
                 gym: req.query.gym
             }).sort({
                 date: -1
-            }).exec(function(err, posts) {
-                console.log(posts);
+            }).exec(function(err, posts){
                 if (err) {
                     console.log(err);
                 } else {
