@@ -1,15 +1,17 @@
 TriTONED
 An application for people working out/seeking to work out to share workout tips, socialize, and most importantly, be aware of current gym conditions.
 
+
 Work Distribution:
+
 Joel - Paper prototype/application design, Neilsen Heuristics, styling
-Crystal - RDigital Prototype, details of application design, addressing and applying Neilsen Heurisitics, styling
+Crystal - Digital Prototype, details of application design, addressing and applying Neilsen Heurisitics, styling
 Leon - implementation of app + skeleton (back-end)
 John - further implementation of backend, styling
 
 
-
 Neilsen’s Heuristics
+
 Visibility of system status - The system should always keep users informed about what is going on, through appropriate feedback within reasonable time.
 -Popup or something that let’s the user know when
 -They have signed in
