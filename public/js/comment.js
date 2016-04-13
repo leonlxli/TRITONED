@@ -30,6 +30,8 @@ $(document).ready(function() {
     }
 });
 
+
+
 $('#send_comment').submit(function(e) {
     e.preventDefault();
 

@@ -1,10 +1,19 @@
 var socket = io();
 var xhttp = new XMLHttpRequest();
 
-// $( document ).ready(function() {
-//     $("#current_gym").val('Gateway 2');
-// });
+$(document).ready(function() {
+    var deleteButtonArray = $('.delete');
+    for (var i = 0; i < deleteButtonArray.length; i++) {
+        if ($(deleteButtonArray[i]).attr("sameUser") == "true") {
+            var postID = $(deleteButtonArray[i]).attr("postID");
+            console.log(postID);
+            $(deleteButtonArray[i]).append('<button value="Delete" postID=' +
+                postID +
+                '>Delete</button>');
+        }
 
+    }
+});
 function gymChange() {
     console.log("Hello");
     var myselect = document.getElementById("current_gym");

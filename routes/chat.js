@@ -8,6 +8,12 @@ exports.view = function(req, res) {
             mongoose.model('Posts').find({}).sort({
                 date: -1
             }).exec(function(err, posts) {
+                for (var i = 0; i < posts.length; i++) {
+                    if (posts[i].user.username == req.user.username) {
+                        posts[i].sameUser = true;
+                        console.log(posts[i]);
+                    }
+                }
                 if (err) {
                     console.log(err);
                 } else if (!req.query.gym) {
@@ -27,7 +33,14 @@ exports.view = function(req, res) {
                 gym: req.query.gym
             }).sort({
                 date: -1
-            }).exec(function(err, posts){
+            }).exec(function(err, posts) {
+                for (var i = 0; i < posts.length; i++) {
+                    console.log(i);
+                    if (posts[i].username == req.user.username) {
+                        posts[i].sameUser = true;
+                        console.log(posts[i]);
+                    }
+                }
                 if (err) {
                     console.log(err);
                 } else {
