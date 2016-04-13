@@ -37,10 +37,20 @@
                      <p>{{posted}}</p>
                    </div>
                    <div class="card-action">
-                     <a href="/comments?postID={{_id}}" class ="black-text comments left" postID="{{_id}}">comments</a>
-                     <a class="black-text right" href="#">delete</a>
+                     <a href="/comments?postID={{_id}}" class="black-text comments left" postID="{{_id}}">comments</a>
+                     <a class="black-text right" href="#" onclick="deletePost()">delete</a>
                    </div>
                    <br />
+                   <div id="modal1" class="modal">
+                    <div class="modal-content">
+                      <h4>Delete post?</h4>
+                      <p>Are you sure you want to delete this post?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <!--a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a-->
+                      <a class="modal-action modal-close waves-effect waves-green btn-flat right" href="/post?post={{_id}}" rel="nofollow">DELETE</a>
+                    </div>
+                  </div>
                  </div>
                </div>
              </div>
@@ -57,4 +67,13 @@
   $(document).ready(function() {
     $('select').material_select();
   });
+
+  $(document).ready(function(){
+   // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+   $('.modal-trigger').leanModal();
+ });
+
+  function deletePost() {
+    $('#modal1').openModal();
+  }
 </script>

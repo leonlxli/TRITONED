@@ -17,7 +17,7 @@
     <div id="inner">
         <div class="center">
         <cemter>
-        <form id="send_post" action="">
+        <form id="send_post" onsubmit="redirect()">
             <input id="message_content" placeholder="Type your message here" autocomplete="off" />
             <select id="gym" value="{{value}}">
                 <option value="Rimac">Rimac</option>
@@ -43,4 +43,8 @@
   $(document).ready(function() {
     $('select').material_select();
   });
+
+  function redirect() {
+    window.location.href = '/chat';
+  }
 </script>
