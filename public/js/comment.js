@@ -30,8 +30,6 @@ $(document).ready(function() {
     }
 });
 
-
-
 $('#send_comment').submit(function(e) {
     e.preventDefault();
 
@@ -41,7 +39,7 @@ $('#send_comment').submit(function(e) {
         comment: comment_content,
         post_id: original_postID
     }, function(my_comment) {
-        console.log(my_comment)
+    	console.log(my_comment)
         $('#comments').append($('<li>').html(messageTemplate(my_comment)));
         $('#comment_content').val('');
     });
