@@ -27,7 +27,7 @@ function gymChange() {
     }, function(data) {
         $('#messages').empty();
         for (var i = 0; i < data.newsfeed.length; i++) {
-            $('#messages').append($('<li>').html(messageTemplate(data.newsfeed[i])));
+            $('#messages').append($('<div>').html(messageTemplate(data.newsfeed[i])));
         }
     });
 
@@ -40,13 +40,13 @@ function gymChange() {
 //     $.get('/comments', {
 //         postID: postID
 //     }, function(html, succ){
-//         // 
+//         //
 //     });
 
 // });
 
 function messageTemplate(template) {
-    var result =
+    /*var result =
         '<hr>' +
         '<div class="user">' +
         '<div class="user-image">' +
@@ -61,9 +61,29 @@ function messageTemplate(template) {
         template.message +
         '</div>'+
         '<a href="/comments?postID='+template._id +
-        '" class ="comments" postID="' + 
+        '" class ="comments" postID="' +
         template._id +
         '"">comments </a>';
+    return result;*/
+
+    var result =
+      '<div class="row center-block">' +
+       '<div class="col s12">' +
+         '<div class="card white">' +
+           '<div class="card-content black-text">' +
+             '<h2 class="card-title">' + template.message + '</h2>' +
+             '<img src="' + template.user.photo + '"/>' +
+             '<p>' + template.user.username + '</p>' +
+             '<p>' + template.posted + '</p>' +
+           '</div>' +
+           '<div class="card-action">' +
+             '<a href="/comments?postID={{_id}}" class ="black-text comments left" postID="{{_id}}">comments</a>' +
+             '<a class="black-text right" href="#">delete</a>' +
+           '</div>' +
+           '<br />' +
+         '</div>' +
+       '</div>' +
+     '</div>';
     return result;
 }
 
@@ -125,6 +145,6 @@ function messageTemplate(template) {
         console.log(data)
         var parsedData = JSON.parse(data);
         parsedData.posted = new Date(parsedData.posted);
-        $('#messages').prepend($('<li>').html(messageTemplate(parsedData)));
+        $('#messages').prepend($('<div>').html(messageTemplate(parsedData)));
     });
 })($);
