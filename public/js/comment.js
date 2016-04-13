@@ -16,6 +16,20 @@ function messageTemplate(template) {
     return result;
 }
 
+$(document).ready(function() {
+    var deleteButtonArray = $('.delete');
+    for (var i = 0; i < deleteButtonArray.length; i++) {
+        if ($(deleteButtonArray[i]).attr("sameUser") == "true") {
+            var commentID = $(deleteButtonArray[i]).attr("commentID");
+            console.log(commentID);
+            $(deleteButtonArray[i]).append('<button value="Delete" commentID=' +
+                commentID +
+                '>Delete</button>');
+        }
+
+    }
+});
+
 $('#send_comment').submit(function(e) {
     e.preventDefault();
 
@@ -25,7 +39,7 @@ $('#send_comment').submit(function(e) {
         comment: comment_content,
         post_id: original_postID
     }, function(my_comment) {
-    	console.log(my_comment)
+        console.log(my_comment)
         $('#comments').append($('<li>').html(messageTemplate(my_comment)));
         $('#comment_content').val('');
     });
