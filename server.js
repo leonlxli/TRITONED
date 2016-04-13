@@ -19,7 +19,8 @@ var db = mongoose.connection;
 var router = {
     index: require("./routes/index"),
     chat: require("./routes/chat"),
-    newPost: require("./routes/newPost")
+    newPost: require("./routes/newPost"),
+    comments: require("./routes/comments")
 };
 
 var parser = {
@@ -129,6 +130,8 @@ app.get('/auth/twitter/callback',
         successRedirect: '/chat',
         failureRedirect: '/'
     }));
+app.get('/comments', router.comments.view);
+app.post('/comments', router.comments.post);
 app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');

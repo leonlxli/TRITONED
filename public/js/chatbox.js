@@ -1,11 +1,17 @@
 var socket = io();
 var xhttp = new XMLHttpRequest();
 
+// $( document ).ready(function() {
+//     $("#current_gym").val('Gateway 2');
+// });
+
 function gymChange() {
     console.log("Hello");
     var myselect = document.getElementById("current_gym");
     var gym = myselect.options[myselect.selectedIndex].value;
     var data = new FormData();
+    var url = '/chat?gym='+gym;
+    // window.location.href = url;
     data.append('gym', gym);
     $.get('/chat', {
         gym: gym
@@ -20,10 +26,17 @@ function gymChange() {
 
 }
 
-function messageTemplate(template) {
-    console.log("template:");
-    console.log(template);
+// $(".comments").click(function() {
+//     var postID = $(this).attr("postID");
+//     $.get('/comments', {
+//         postID: postID
+//     }, function(html, succ){
+//         // 
+//     });
 
+// });
+
+function messageTemplate(template) {
     var result =
         '<hr>' +
         '<div class="user">' +
@@ -37,7 +50,11 @@ function messageTemplate(template) {
         '</div>' +
         '<div class="message-content">' +
         template.message +
-        '</div>';
+        '</div>'+
+        '<a href="/comments?postID='+template._id +
+        '" class ="comments" postID="' + 
+        template._id +
+        '"">comments </a>';
     return result;
 }
 
