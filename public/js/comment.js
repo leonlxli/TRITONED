@@ -14,8 +14,6 @@ function messageTemplate(template) {
               '<div class="message-content">' +
                   '<h5>' + template.message + '</h5>' +
               '</div>' +
-              '<button class="btn right blue darken-3" value="Delete" commentID={{_id}}' +
-              '>Delete</button>' +
               '<br>' +
               '<br>' +
           '</div>' +

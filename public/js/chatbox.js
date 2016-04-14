@@ -121,7 +121,7 @@ function messageTemplate(template) {
         '</div>' +
         '</div>';*/
     var result =
-      '<div class="row center-block" id="post{{_id}}">' +
+      '<div class="row center-block" id="post' + template._id + '">' +
           '<div class="col s12">' +
               '<div class="card white">' +
                   '<div class="card-content black-text">' +
@@ -132,19 +132,19 @@ function messageTemplate(template) {
                       '</div>' +
                   '</div>' +
                   '<div class="card-action">' +
-                      '<a href="/comments?postID=' + template._id + '" class="btn blue darken-3 left comments" postID="{{_id}}">' + template.comments.length + ' comments</a>' +
-                      '<div class="delete" sameUser="' + template.sameUser + '" postID="{{_id}}">' +
+                      '<a href="/comments?postID=' + template._id + '" class="btn blue darken-3 left comments" postID="' + template._id + '">' + template.comments.length + ' comments</a>' +
+                      '<div class="delete" sameUser="' + template.sameUser + '" postID="' + template._id + '">' +
                       '</div>' +
                   '</div>' +
                   '<br>' +
                   '<br />' +
-                  '<div id="modal{{_id}}" class="modal">' +
+                  '<div id="modal' + template._id + '" class="modal">' +
                       '<div class="modal-content">' +
                           '<h4>Delete post?</h4>' +
                           '<p>Are you sure you want to delete this post? Click "DELETE" below to delete this post or cancel to go back.</p>' +
                       '</div>' +
                       '<div class="modal-footer">' +
-                          '<a class="modal-action modal-close btn blue darken-3 right delBtn" postID="{{_id}}" onclick="deletePost(\'' + template._id + '\')" rel="nofollow" style="margin-left:40px">DELETE</a>&nbsp;&nbsp;&nbsp;' +
+                          '<a class="modal-action modal-close btn blue darken-3 right delBtn" postID="' + template._id + '" onclick="deletePost(\'' + template._id + '\')" rel="nofollow" style="margin-left:40px">DELETE</a>&nbsp;&nbsp;&nbsp;' +
                           '<a class="modal-action modal-close btn grey lighten-1 right">CANCEL</a>' +
                       '</div>' +
                   '</div>' +
