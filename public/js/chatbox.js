@@ -11,7 +11,7 @@ $(document).ready(function() {
                 postID +
                 '>Delete</button>');*/
             $(deleteButtonArray[i]).append(
-              '<a class="delete black-text right" href="#" onclick="deletePost()" postID=' +
+              '<button class="btn blue darken-3 white-text right" href="#" onclick="deletePost()" postID=' +
               postID +
               '>delete</a>'
             );
