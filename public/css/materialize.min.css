@@ -4,6 +4,20 @@
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
 
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+}
+
 .materialize-red {
     background-color: #e51c23 !important
 }
@@ -20,19 +34,17 @@
     color: #fdeaeb !important
 }
 
+#backgroundIMG {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url('../img/gym-weights.jpg');
+}
+
 .outer {
     position: relative;
-
-    z-index: -1;
     top: 0;
     bottom: 0;
-    left: 10%;
-    right: 10%;
-    background-color:black;
-    opacity: .4;
     width: 80%;
-    height: 100%;
-    overflow: hidden;
+    background-color: rgba(25, 118, 210, 0.9);
+    margin: 0 auto;
 }
 
 .buff {
@@ -4347,6 +4359,7 @@ footer.page-footer .footer-copyright {
 }
 
 .card {
+	box-shadow: 10px; ;
     position: relative;
     margin: 0.5rem 0 1rem 0;
     background-color: #fff;
@@ -6160,9 +6173,9 @@ select {
 .select-wrapper span.caret {
     color: initial;
     position: absolute;
-    right: 40px;
-    top: 7px;
-    font-size: 20px
+    right: 0;
+    top: 16px;
+    font-size: 10px
 }
 
 .select-wrapper span.caret.disabled {
