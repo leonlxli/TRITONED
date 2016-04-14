@@ -28,11 +28,11 @@ function messageTemplate(template) {
                   '<div class="user-info">' +
                       '<span class="username">' + template.username + '</span>' +
                       '<br/>' +
-                      '<span class="posted">' + template.posted + '</span>' +
+                      '<span class="posted">' + new Date(template.posted) + '</span>' +
                   '</div>' +
               '</div>' +
               '<button class="btn right blue darken-3" value="Delete" commentID={{_id}}' +
-              '>Delete</button>' + 
+              '>Delete</button>' +
               '<br>' +
               '<br>' +
           '</div>' +
@@ -91,4 +91,3 @@ $(document).ready(function() {
         }
     }
 });
-
