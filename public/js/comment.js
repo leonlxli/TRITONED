@@ -15,7 +15,7 @@ function messageTemplate(template) {
         '</div>';*/
 
     var result =
-      '<hr>' + 
+      '<hr>' +
       '<li class="card white">' +
           '<div class="card-content black-text">' +
               '<div class="message-content">' +
@@ -31,8 +31,8 @@ function messageTemplate(template) {
                       '<span class="posted">' + template.posted + '</span>' +
                   '</div>' +
               '</div>' +
-              '<div class="delete card-action" sameUser="' + template.sameUser + '" commentID="{{_id}}">' +
-              '</div>' +
+              '<button class="btn right blue darken-3" value="Delete" commentID={{_id}}' +
+              '>Delete</button>' + 
               '<br>' +
               '<br>' +
           '</div>' +
@@ -46,7 +46,7 @@ $(document).ready(function() {
         if ($(deleteButtonArray[i]).attr("sameUser") == "true") {
             var commentID = $(deleteButtonArray[i]).attr("commentID");
             console.log(commentID);
-            $(deleteButtonArray[i]).append('<button class="btn right blue" value="Delete" commentID=' +
+            $(deleteButtonArray[i]).append('<button class="btn right blue darken-3" value="Delete" commentID=' +
                 commentID +
                 '>Delete</button>');
         }
