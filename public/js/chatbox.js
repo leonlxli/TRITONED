@@ -2,6 +2,9 @@ var socket = io();
 var xhttp = new XMLHttpRequest();
 
 $(document).ready(function() {
+    $('.modal-trigger').leanModal();
+    $('select').material_select();
+
     var deleteButtonArray = $('.delete');
     for (var i = 0; i < deleteButtonArray.length; i++) {
         if ($(deleteButtonArray[i]).attr("sameUser") == "true") {
@@ -11,20 +14,37 @@ $(document).ready(function() {
                 postID +
                 '>Delete</button>');*/
             $(deleteButtonArray[i]).append(
-              '<button class="btn blue darken-3 white-text right" href="#" onclick="deletePost()" postID=' +
-              postID +
-              '>delete</a>'
+                '<button class="btn blue darken-3 white-text right" href="#" onclick="deletePostModal(\'' + postID + '\')" postID=' +
+                postID +
+                '>delete</a>'
             );
         }
 
     }
 });
+
+function deletePostModal(postID) {
+    console.log("test");
+    $('#modal'+postID).openModal();
+}
+
+function deletePost(postID){
+    $.post('/chat/delete', {
+        postID: postID,
+    }, function(data, succ) {
+        if(data.succ){
+            // console.log(data)
+            $("#post"+postID).remove();
+        }
+    })
+}
+
 function gymChange() {
     console.log("Hello");
     var myselect = document.getElementById("current_gym");
     var gym = myselect.options[myselect.selectedIndex].value;
     var data = new FormData();
-    var url = '/chat?gym='+gym;
+    var url = '/chat?gym=' + gym;
     // window.location.href = url;
     data.append('gym', gym);
     $.get('/chat', {
@@ -71,37 +91,37 @@ function messageTemplate(template) {
      '</div>';*/
 
     var result =
-      '<div class="row center-block">' +
-      '<div class="col s12">' +
-         '<div class="card white">' +
-           '<div class="card-content black-text">' +
-             '<div class="card-title">' +
-               '<h2>' + template.message + '</h2>' +
-               '<p>' + template.gym + '</p>' +
-             '</div>' +
-             '<img src="' + template.user.photo + '"/>' +
-             '<p>' + template.user.username + '</p>' +
-             '<p>' + template.posted + '</p>' +
-           '</div>' +
-           '<div class="card-action">' +
-             '<a href="/comments?postID={{_id}}" class="btn blue darken-3 left comments" postID="{{_id}}">' + template.comments.length + ' comments</a>' +
-             '<button class="btn blue darken-3 white-text right" href="#" onclick="deletePost()" postID="{{_id}}">delete</a>' +
-           '</div>' +
-           '<br>' +
-           '<br />' +
-           '<div id="modal1" class="modal">' +
-           '<div class="modal-content">' +
-              '<h4>Delete post?</h4>' +
-              '<p>Are you sure you want to delete this post? Click "DELETE" below to delete this post or cancel to go back.</p>' +
-            '</div>' +
-            '<div class="modal-footer">' +
-              '<a class="modal-action modal-close btn blue darken-3 right" href="/post?id={{_id}}" rel="nofollow">DELETE</a>' +
-              '<a class="modal-action modal-close btn grey lighten-1 right">CANCEL</a>' +
-            '</div>' +
-          '</div>' +
-         '</div>' +
-       '</div>' +
-     '</div>';
+        '<div class="row center-block">' +
+        '<div class="col s12">' +
+        '<div class="card white">' +
+        '<div class="card-content black-text">' +
+        '<div class="card-title">' +
+        '<h2>' + template.message + '</h2>' +
+        '<p>' + template.gym + '</p>' +
+        '</div>' +
+        '<img src="' + template.user.photo + '"/>' +
+        '<p>' + template.user.username + '</p>' +
+        '<p>' + template.posted + '</p>' +
+        '</div>' +
+        '<div class="card-action">' +
+        '<a href="/comments?postID={{_id}}" class="btn blue darken-3 left comments" postID="{{_id}}">' + template.comments.length + ' comments</a>' +
+        '<button class="btn blue darken-3 white-text right" href="#" onclick="deletePost()" postID="{{_id}}">delete</a>' +
+        '</div>' +
+        '<br>' +
+        '<br />' +
+        '<div id="modal1" class="modal">' +
+        '<div class="modal-content">' +
+        '<h4>Delete post?</h4>' +
+        '<p>Are you sure you want to delete this post? Click "DELETE" below to delete this post or cancel to go back.</p>' +
+        '</div>' +
+        '<div class="modal-footer">' +
+        '<a class="modal-action modal-close btn blue darken-3 right" href="/post?id={{_id}}" rel="nofollow">DELETE</a>' +
+        '<a class="modal-action modal-close btn grey lighten-1 right">CANCEL</a>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
     return result;
 }
 

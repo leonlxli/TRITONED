@@ -137,7 +137,7 @@ app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
 });
-app.get('/post', router.chat.delete);
+app.post('/chat/delete', router.chat.delete);
 
 
 // More routes here if needed

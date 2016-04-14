@@ -1,18 +1,4 @@
 function messageTemplate(template) {
-    /*var result =
-        '<hr>' +
-        '<div class="user">' +
-        '<div class="user-image">' +
-        '<img src="' + template.photo + '" alt="">' +
-        '</div>' +
-        '<div class="user-info">' +
-        '<span class="username">' + template.username + '</span><br/>' +
-        '<span class="posted">' + template.posted + '</span>' +
-        '</div>' +
-        '</div>' +
-        '<div class="message-content">' +
-        template.message +
-        '</div>';*/
 
     var result =
       '<hr>' +
