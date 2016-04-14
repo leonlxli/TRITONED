@@ -20,6 +20,25 @@
     color: #fdeaeb !important
 }
 
+.outer {
+    position: relative;
+
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    background-color:black;
+    opacity: .4;
+    width: 80%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.buff {
+    z-index: 2;
+}
+
 .materialize-red.lighten-4 {
     background-color: #f8c1c3 !important
 }
@@ -3870,8 +3889,8 @@ nav i.material-icons {
 }
 
 nav {
-	position: fixed;
-	z-index: 5;
+    position: fixed;
+    z-index: 5;
 }
 
 nav .nav-wrapper {

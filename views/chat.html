@@ -13,28 +13,30 @@
 </nav>
 
 <body class="blue darken-2">
-  <section>
-      <br />
-      <br />
-      <br />
-      <br />
-      <div id="inner" class="container white-text">
-        <h5>Viewing posts from gym:</h5>
-      </div>
+    <div class="outer"></div>
+    <section>
+        <br />
+        <br />
+        <br />
+        <br />
+        <div id="inner" class="container white-text">
+            <h5>Viewing posts from gym:</h5>
+        </div>
         <div id="inner" class="container white">
             <select class="black-text" id="current_gym" onChange="gymChange()">
-                <option class="black-text" value="all">     All Gyms</option>
-                <option class="black-text" value="Rimac">     Rimac</option>
-                <option class="black-text" value="Main_Gym">     Main Gym</option>
-                <option class="black-text" value="CanyonView">     CanyonView Gym</option>
+                <option class="black-text" value="all"> All Gyms</option>
+                <option class="black-text" value="Rimac"> Rimac</option>
+                <option class="black-text" value="Main_Gym"> Main Gym</option>
+                <option class="black-text" value="CanyonView"> CanyonView Gym</option>
             </select>
         </div>
         <div id="inner" class="container">
             <p class="white-text">(choose from the dropdown menu above to filter through gyms)</p>
         </div>
     </section>
-<!--     <h2 id = "usersOnline"></id>
- -->    <section class="container">
+    <!--     <h2 id = "usersOnline"></id>
+ -->
+    <section class="container">
         <div id="inner">
             <div id="messages">
                 {{#each newsfeed}}
