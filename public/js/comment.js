@@ -1,23 +1,6 @@
 function messageTemplate(template) {
-
-    var result =
-      '<hr>' +
-      '<li class="card white">' +
-          '<div class="card-content black-text">' +
-              '<div class="user">' +
-                  '<div class="user-image">' +
-                      '<img src="' + template.photo + '" alt="" style="vertical-align: middle;">' +
-                      '<span class="username"><b>' + template.username + '</b> posted on </span>' +
-                      '<span class="posted">' + new Date(template.posted) + '</span>' +
-                  '</div>' +
-              '</div>' +
-              '<div class="message-content">' +
-                  '<h5>' + template.message + '</h5>' +
-              '</div>' +
-              '<br>' +
-              '<br>' +
-          '</div>' +
-      '</li>';
+    console.log(template);
+    
     return result;
 }
 

@@ -47,7 +47,6 @@ exports.post = function(req, res) {
     mongoose.model('Posts').findOne({
         _id: req.body.post_id
     }, function(err, posts) {
-        console.log(posts);
         if (err) {
             console.log(err);
         } else {
@@ -59,6 +58,8 @@ exports.post = function(req, res) {
                 'username': req.user.username,
                 'posted': Date.now(),
             })
+
+            // console.log(/posts.comments[posts.comments.length-1]._id)
             posts.save();
             // console.log("saved -----------------")
             // console.log(posts);
@@ -67,6 +68,7 @@ exports.post = function(req, res) {
                 'message': req.body.comment,
                 'username': req.user.username,
                 'posted': Date.now(),
+                'commentID': posts.comments[posts.comments.length-1]._id
             });
         }
     })
