@@ -22,7 +22,7 @@ $(document).ready(function() {
         if ($(deleteButtonArray[i]).attr("sameUser") == "true") {
             var commentID = $(deleteButtonArray[i]).attr("commentID");
             console.log(commentID);
-            $(deleteButtonArray[i]).append('<button class="btn right red" value="Delete" commentID=' +
+            $(deleteButtonArray[i]).append('<button class="btn right blue" value="Delete" commentID=' +
                 commentID +
                 '>Delete</button>');
         }
