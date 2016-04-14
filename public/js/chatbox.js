@@ -78,7 +78,7 @@ function gymChange() {
 
 function messageTemplate(template) {
 
-    var result =
+    /*var result =
         '<div class="row center-block" id="post{{_id}}">' +
         '<div class="col s12">' +
         '<div class="card white">' +
@@ -109,7 +109,38 @@ function messageTemplate(template) {
         '</div>' +
         '</div>' +
         '</div>' +
-        '</div>';
+        '</div>';*/
+    var result =
+      '<div class="row center-block" id="post{{_id}}">' +
+          '<div class="col s12">' +
+              '<div class="card white">' +
+                  '<div class="card-content black-text">' +
+                      '<img style="vertical-align:middle;" src="' + template.user.photo + '" />' +
+                      '<span><b>  ' + template.user.username + '</b> posted in <a class="blue-text"><i>' + template.gym + '</i></a> on ' + template.posted + ':</p></span>' +
+                      '<div class="card-title">' +
+                          '<p>' + template.message + '</p>' +
+                      '</div>' +
+                  '</div>' +
+                  '<div class="card-action">' +
+                      '<a href="/comments?postID={{_id}}" class="btn blue darken-3 left comments" postID="{{_id}}">' + template.comments.length + ' comments</a>' +
+                      '<div class="delete" sameUser="' + template.sameUser + '" postID="{{_id}}">' +
+                      '</div>' +
+                  '</div>' +
+                  '<br>' +
+                  '<br />' +
+                  '<div id="modal{{_id}}" class="modal">' +
+                      '<div class="modal-content">' +
+                          '<h4>Delete post?</h4>' +
+                          '<p>Are you sure you want to delete this post? Click "DELETE" below to delete this post or cancel to go back.</p>' +
+                      '</div>' +
+                      '<div class="modal-footer">' +
+                          '<a class="modal-action modal-close btn blue darken-3 right delBtn" postID="{{_id}}" onclick="deletePost(\'' + template._id + '\')" rel="nofollow" style="margin-left:40px">DELETE</a>&nbsp;&nbsp;&nbsp;' +
+                          '<a class="modal-action modal-close btn grey lighten-1 right">CANCEL</a>' +
+                      '</div>' +
+                  '</div>' +
+              '</div>' +
+          '</div>' +
+      '</div>';
     return result;
 }
 
