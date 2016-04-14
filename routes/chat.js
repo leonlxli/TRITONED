@@ -2,8 +2,9 @@
 var mongoose = require('mongoose');
 
 exports.delete = function(req, res) {
+  console.log(req.query.message);
   mongoose.model('Posts')
-          .remove({ _id: req.query.post }, function(err) {
+          .remove({ _id : req.query.id }, function(err) {
             (err) ? res.send(err) : res.redirect('/chat');
           });
 }

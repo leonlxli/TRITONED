@@ -4,7 +4,7 @@
    <div class="nav-wrapper">
      <a href="/chat" class="brand-logo center blue-text text-lighten-2"><img src="./img/logo.png" alt="" height="60px" width="70px"/></a>
      <ul class="left">
-        <li><a href="/newpost">new post</a></li>
+        <li><a href="/newpost"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></li>
      </ul>
      <ul class="right">
        <li><a href="/logout"><i class="material-icons">power_settings_new</i></a></li>
@@ -13,6 +13,7 @@
  </nav>
 <body class="blue darken-2">
   <section>
+      <br />
       <div id="inner" class="container">
           <select class="white-text" id="current_gym" onChange="gymChange()">
               <option class="black-text" value="all">All</option>
@@ -20,6 +21,7 @@
               <option class="black-text" value="Main_Gym">Main Gym</option>
               <option class="black-text" value="CanyonView">Canyon View Gym</option>
           </select>
+        </section>
   <section class="container">
       <div id="inner">
           <div id="messages">
@@ -38,7 +40,9 @@
                    </div>
                    <div class="card-action">
                      <a href="/comments?postID={{_id}}" class="black-text comments left" postID="{{_id}}">comments</a>
-                     <a class="black-text right" href="#" onclick="deletePost()">delete</a>
+                     <!--a class="delete black-text right" href="#" onclick="deletePost()" postID="{{_id}}" sameUser="{{sameUser}}">delete</a-->
+                     <div class="delete" sameUser="{{sameUser}}" postID="{{_id}}">
+                     </div>
                    </div>
                    <br />
                    <div id="modal1" class="modal">
@@ -48,7 +52,7 @@
                     </div>
                     <div class="modal-footer">
                       <!--a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a-->
-                      <a class="modal-action modal-close waves-effect waves-green btn-flat right" href="/post?post={{_id}}" rel="nofollow">DELETE</a>
+                      <a class="modal-action modal-close waves-effect waves-green btn-flat right" href="/post?id={{_id}}" rel="nofollow">DELETE</a>
                     </div>
                   </div>
                  </div>

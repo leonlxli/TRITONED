@@ -4,7 +4,7 @@
    <div class="nav-wrapper">
      <a href="/chat" class="brand-logo center blue-text text-lighten-2"><img src="./img/logo.png" alt="" height="60px" width="70px"/></a>
      <ul class="left">
-        <li><a href="/newpost">new post</a></li>
+        <li><a href="/newpost"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></li>
      </ul>
      <ul class="right">
        <li><a href="/logout"><i class="material-icons">power_settings_new</i></a></li>
@@ -12,19 +12,19 @@
    </div>
  </nav>
 <body class="blue darken-2">
-  <section>
-
+  <section class="container">
+    <br />
     <div id="inner">
         <div class="center">
-        <cemter>
+        <center>
         <form id="send_post" onsubmit="redirect()">
-            <input id="message_content" placeholder="Type your message here" autocomplete="off" />
-            <select id="gym" value="{{value}}">
+            <input class="white-text" id="message_content" placeholder="Type your message here" autocomplete="off" required/>
+            <select id="gym" value="{{value}}" class="white-text">
                 <option value="Rimac">Rimac</option>
                 <option value="Main_Gym">Main Gym</option>
                 <option value="CanyonView">Canyon View Gym</option>
             </select>
-            <input type="submit" value="Post">
+            <input class="btn-large" type="submit" value="Post">
         </form>
         </center>
         </div>

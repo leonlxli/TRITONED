@@ -7,9 +7,14 @@ $(document).ready(function() {
         if ($(deleteButtonArray[i]).attr("sameUser") == "true") {
             var postID = $(deleteButtonArray[i]).attr("postID");
             console.log(postID);
-            $(deleteButtonArray[i]).append('<button value="Delete" postID=' +
+            /*$(deleteButtonArray[i]).append('<button value="Delete" postID=' +
                 postID +
-                '>Delete</button>');
+                '>Delete</button>');*/
+            $(deleteButtonArray[i]).append(
+              '<a class="delete black-text right" href="#" onclick="deletePost()" postID=' +
+              postID +
+              '>delete</a>'
+            );
         }
 
     }

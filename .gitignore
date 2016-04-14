@@ -37,4 +37,5 @@ jspm_packages
 .DS_Store
 dbpath
 log
+.env
 .gitignore
