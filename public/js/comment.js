@@ -6,10 +6,8 @@ function messageTemplate(template) {
           '<div class="card-content black-text">' +
               '<div class="user">' +
                   '<div class="user-image">' +
-                      '<img src="' + template.photo + '" alt="">' +
-                  '</div>' +
-                  '<div class="user-info">' +
-                      '<span class="username">' + template.username + ' posted on </span>' +
+                      '<img src="' + template.photo + '" alt="" style="vertical-align: middle;">' +
+                      '<span class="username"><b>' + template.username + '</b> posted on </span>' +
                       '<span class="posted">' + new Date(template.posted) + '</span>' +
                   '</div>' +
               '</div>' +

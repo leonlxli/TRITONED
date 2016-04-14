@@ -21,20 +21,18 @@
             <div class="card-content black-text">
                 <div class="user">
                     <div class="user-image">
-                        <img src="{{user.photo}}" alt="">
-                    </div>
-                    <div class="user-info">
+                        <img src="{{user.photo}}" alt="" style="vertical-align: middle;">
                         <span class="username black-text"><b>{{user.username}}</b> posted on </span>
                         <span class="posted black-text">{{posted}}</span>
                     </div>
                 </div>
                 <div class="message-content" id="originalPost" postID="{{_id}}">
-                    <h2 class="black-text">{{message}}</h2>
+                    <h5 class="black-text">{{message}}</h5>
                 </div>
             </div>
         </div>
 
-        
+
         <ul id="comments">
             {{#each comments}}
             <hr>
@@ -42,9 +40,7 @@
                 <div class="card-content black-text">
                     <div class="user">
                         <div class="user-image">
-                            <img src="{{photo}}" alt="">
-                        </div>
-                        <div class="user-info">
+                            <img src="{{photo}}" alt="" style="vertical-align: middle;">
                             <span class="username"><b>{{username}}</b> posted on </span>
                             <span class="posted">{{posted}}</span>
                         </div>
