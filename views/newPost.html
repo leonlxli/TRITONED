@@ -20,11 +20,12 @@
         <form id="send_post" onsubmit="redirect()">
             <input class="white-text" id="message_content" placeholder="Type your message here" autocomplete="off" required/>
             <select id="gym" value="{{value}}" class="white-text">
+                <option value="" disabled selected>Choose a gym from the dropdown menu</option>
                 <option value="Rimac">Rimac</option>
                 <option value="Main_Gym">Main Gym</option>
                 <option value="CanyonView">Canyon View Gym</option>
             </select>
-            <input class="btn-large" type="submit" value="Post">
+            <input class="btn-large blue darken-4" type="submit" value="Post">
         </form>
         </center>
         </div>
