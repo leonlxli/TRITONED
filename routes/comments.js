@@ -12,9 +12,9 @@ exports.view = function(req, res) {
                 console.log(err);
             } else {
 
-                for(var i = 0; i<post.comments.length;i++){
+                for (var i = 0; i < post.comments.length; i++) {
                     console.log(i);
-                    if(post.comments[i].username==req.user.username){
+                    if (post.comments[i].username == req.user.username) {
                         post.comments[i].sameUser = true;
                         console.log(post.comments[i]);
                     }
@@ -26,6 +26,20 @@ exports.view = function(req, res) {
         res.redirect("/");
     }
 };
+
+exports.delete = function(req, res) {
+    mongoose.model('Posts').findOne({
+        _id: req.body.postID
+    }, function(err, post) {
+        for(var i =0; i<post.comments.length;i++){
+            if(post.comments[i]._id==req.body.commentID){
+                post.comments.splice(i, 1);
+            }
+        }
+        post.save();
+        res.json({succ:post.comments});
+    })
+}
 
 exports.post = function(req, res) {
     // console.log("posting");

@@ -132,6 +132,7 @@ app.get('/auth/twitter/callback',
     }));
 app.get('/comments', router.comments.view);
 app.post('/comments', router.comments.post);
+app.post('/comments/delete', router.comments.delete);
 app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
