@@ -29,7 +29,7 @@ var parser = {
 };
 
 var strategy = {
-  Twitter: require('passport-twitter').Strategy
+    Twitter: require('passport-twitter').Strategy
 };
 
 
@@ -65,7 +65,9 @@ app.set("view engine", "html");
 app.set("views", __dirname + "/views");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(parser.cookie());
-app.use(parser.body.urlencoded({ extended: true }));
+app.use(parser.body.urlencoded({
+    extended: true
+}));
 app.use(parser.body.json());
 app.use(require('method-override')());
 app.use(session_middleware);
@@ -80,7 +82,7 @@ passport.use(new strategy.Twitter({
     function(token, tokenSecret, profile, done) {
         console.log(profile.id);
         models.User.findOne({
-          twitterID: profile.id
+            twitterID: profile.id
         }, function(err, user) {
             // (1) Check if there is an error. If so, return done(err);
             if (err) {
@@ -112,11 +114,11 @@ passport.use(new strategy.Twitter({
 ));
 
 passport.serializeUser(function(user, done) {
-  done(null, user);
+    done(null, user);
 });
 
 passport.deserializeUser(function(user, done) {
-  done(null, user);
+    done(null, user);
 });
 
 // Routes
@@ -147,66 +149,78 @@ io.use(function(socket, next) {
     session_middleware(socket.request, {}, next);
 });
 
+var currentlyOnline = 0;
+
 io.on('connection', function(socket) {
-            console.log('user connected');
+    console.log('user connected');
+    currentlyOnline += 1;
+    io.emit('online', JSON.stringify({
+        online: currentlyOnline
+    }));
+    socket.on('disconnect', function() {
+            if (currentlyOnline > 0) {
+                currentlyOnline -= 1;
+                io.emit('online', JSON.stringify({
+                    online: currentlyOnline
+                }));
+            }
 
-            socket.on('disconnect', function() {
-                    console.log('user disconnected');
-                })
-                // socket.on('newComment', function(comment) {
-                //     var user = socket.request.session.passport.user;
-                //     models.Posts.findOne({
-                //         _id: comment.parent_post_id
-                //     }, function(err, post) {
-                //         var newComment = {
-                //             'username': user.username,
-                //             'photo': user.photos[0].value,
-                //             'message': comment.comment,
-                //         }
-                //         post.comments.push(newComment);
-                //         post.save(function(err, news) {
-                //             if (err) console.log(err);
-                //             newComment['parent_id'] = comment.parent_post_id
-                //             io.emit('newComment', JSON.stringify(newComment));
-                //         });
-                //     });
-                // })
-            // socket.on('getGym', function(Thisgym) {
-            //     console.log("Helloooooo");
-            //     app.get("/chat", function(req, res) {
-            //         console.log("test");
-            //         mongoose.model('Posts').find({gym:Thisgym}).sort({
-            //             date: -1
-            //         }).exec(function(err, posts) {
-            //             console.log(posts);
-            //             if (err) {
-            //                 console.log(err);
-            //             } else {
-            //                 res.render("chat", {
-            //                     'newsfeed': posts
-            //                 });
-            //             }
-            //         });
-            //     })
-            // });
-                socket.on('newsfeed', function(msg) {
-                    var user = socket.request.session.passport.user;
+            console.log('user disconnected');
+        })
+        // socket.on('newComment', function(comment) {
+        //     var user = socket.request.session.passport.user;
+        //     models.Posts.findOne({
+        //         _id: comment.parent_post_id
+        //     }, function(err, post) {
+        //         var newComment = {
+        //             'username': user.username,
+        //             'photo': user.photos[0].value,
+        //             'message': comment.comment,
+        //         }
+        //         post.comments.push(newComment);
+        //         post.save(function(err, news) {
+        //             if (err) console.log(err);
+        //             newComment['parent_id'] = comment.parent_post_id
+        //             io.emit('newComment', JSON.stringify(newComment));
+        //         });
+        //     });
+        // })
+        // socket.on('getGym', function(Thisgym) {
+        //     console.log("Helloooooo");
+        //     app.get("/chat", function(req, res) {
+        //         console.log("test");
+        //         mongoose.model('Posts').find({gym:Thisgym}).sort({
+        //             date: -1
+        //         }).exec(function(err, posts) {
+        //             console.log(posts);
+        //             if (err) {
+        //                 console.log(err);
+        //             } else {
+        //                 res.render("chat", {
+        //                     'newsfeed': posts
+        //                 });
+        //             }
+        //         });
+        //     })
+        // });
+    socket.on('newsfeed', function(msg) {
+        var user = socket.request.session.passport.user;
 
-                    var newNewsFeed = new models.Posts({
-                        'user': {
-                            'username': user.username,
-                            'photo': user.photos[0].value
-                        },
-                        'message': msg
-                    });
-                    newNewsFeed.save(function(err, news) {
-                        if (err) console.log(err);
-                        io.emit('newsfeed', JSON.stringify(news));
-                    });
-                });
-            })
+        var newNewsFeed = new models.Posts({
+            'user': {
+                'username': user.username,
+                'photo': user.photos[0].value
+            },
+            'message': msg
+        });
+        newNewsFeed.save(function(err, news) {
+            if (err) console.log(err);
+            io.emit('newsfeed', JSON.stringify(news));
+        });
+    });
+})
 
-            /* TODO: Server-side Socket.io here */
+/* TODO: Server-side Socket.io here */
 
 http.listen(app.get("port"), function() {
     console.log("Express server listening on port " + app.get("port"));

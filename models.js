@@ -5,7 +5,11 @@ var userSchema = mongoose.Schema({
     'token': String,
     'username': String,
     'displayName': String,
-    'photo': String
+    'photo': String,
+    'active_sessions': {
+        type: Number,
+        default: 0
+    }
 });
 
 var postSchema = mongoose.Schema({
@@ -37,7 +41,7 @@ var postSchema = mongoose.Schema({
             default: Date.now()
         }
     }],
-    'numOfComments':Number,
+    'numOfComments': Number,
     'notification': String
 });
 
