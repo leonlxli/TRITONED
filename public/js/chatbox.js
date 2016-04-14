@@ -122,7 +122,7 @@ function messageTemplate(template) {
                       '</div>' +
                   '</div>' +
                   '<div class="card-action">' +
-                      '<a href="/comments?postID={{_id}}" class="btn blue darken-3 left comments" postID="{{_id}}">' + template.comments.length + ' comments</a>' +
+                      '<a href="/comments?postID=' + template._id + '" class="btn blue darken-3 left comments" postID="{{_id}}">' + template.comments.length + ' comments</a>' +
                       '<div class="delete" sameUser="' + template.sameUser + '" postID="{{_id}}">' +
                       '</div>' +
                   '</div>' +
