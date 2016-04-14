@@ -1,10 +1,10 @@
 <nav class="blue darken-4">
    <div class="nav-wrapper">
      <a href="/chat" class="brand-logo center blue-text text-lighten-2"><img src="./img/logo.png" alt="" height="60px" width="70px"/></a>
-     <ul class="left">
+     <ul class="right">
         <li><a href="/newpost"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></li>
      </ul>
-     <ul class="right">
+     <ul class="left">
        <li><a href="/logout"><i class="material-icons">power_settings_new</i></a></li>
      </ul>
    </div>
@@ -13,6 +13,7 @@
   <br />
   <br />
   <div class="container">
+    <h5 class="white-text center">Post and Comments</h5>
     <div class="card blue lighten-4">
       <div class="card-content black-text">
         <div class="message-content">
@@ -51,12 +52,14 @@
               <div class="delete card-action" sameUser="{{sameUser}}" commentID="{{_id}}">
                   <!-- code for the delete button is in comment.js in the document.ready function -->
               </div>
-              <br />
+              <br>
+              <br>
             </div>
         </li>
         {{/each}}
     </ul>
     <form id="send_comment" action="#" class="center center-block">
+        <div><h6 class="white-text">Type up a comment here:<h6></div>
         <input id="comment_content" class="white blue-text text-darken-4 container" placeholder="Type a new comment and hit enter!" autocomplete="off" parent="{{_id}}" />
         <input type="submit" value="Submit" class="btn blue darken-4">
     </form>

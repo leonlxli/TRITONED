@@ -3,10 +3,10 @@
 <nav class="blue darken-4">
    <div class="nav-wrapper">
      <a href="/chat" class="brand-logo center blue-text text-lighten-2"><img src="./img/logo.png" alt="" height="60px" width="70px"/></a>
-     <ul class="left">
+     <ul class="right">
         <li><a href="/newpost"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></li>
      </ul>
-     <ul class="right">
+     <ul class="left">
        <li><a href="/logout"><i class="material-icons">power_settings_new</i></a></li>
      </ul>
    </div>
@@ -19,12 +19,12 @@
             <h5 class="white-text">Create New Post</h5>
         <form id="send_post" onsubmit="redirect()">
             <div class="container white">
-            <input class="blue-text" id="message_content" placeholder="Type your message here" autocomplete="off" required/>
-            <select id="gym" value="{{value}}" class="black-text">
-                <option value="" disabled selected>Choose a gym from the dropdown menu</option>
-                <option value="Rimac">Rimac</option>
-                <option value="Main_Gym">Main Gym</option>
-                <option value="CanyonView">Canyon View Gym</option>
+            <input class="blue-text" id="message_content" placeholder="    Type your message here" autocomplete="off" required/>
+            <select id="gym" value="{{value}}" class="black-text" required>
+                <option value="" disabled selected>    Choose a gym from the dropdown menu</option>
+                <option value="Rimac">    Rimac</option>
+                <option value="Main_Gym">    Main Gym</option>
+                <option value="CanyonView">    Canyon View Gym</option>
             </select>
         </div>
             <input class="btn-large blue darken-4" type="submit" value="Post">

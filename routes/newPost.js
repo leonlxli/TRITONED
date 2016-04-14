@@ -14,6 +14,13 @@ exports.view = function(req, res) {
 exports.post = function(req, res) {
 	console.log(req.body);
     if (req.user){
+
+        if (req.body.gym == "") {
+            res.render("newPost", {
+                'notification': "You must choose a gym"
+            });
+        }
+
     	var newPost = new models.Posts({
                     'gym': req.body.gym,
                     'message': req.body.message,
@@ -22,7 +29,8 @@ exports.post = function(req, res) {
                     	'photo': req.user.photos[0].value
                     },
                     'posted': Date.now(),
-                    'comments': []
+                    'comments': [],
+                    'notification': ""
                 });
     	newPost.save(function(err, suc){
     		if (err){

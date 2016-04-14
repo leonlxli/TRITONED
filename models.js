@@ -36,7 +36,8 @@ var postSchema = mongoose.Schema({
             type: Date,
             default: Date.now()
         }
-    }]
+    }],
+    'notification': String
 });
 
 exports.User = mongoose.model('User', userSchema);
