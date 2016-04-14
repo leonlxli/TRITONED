@@ -2,8 +2,6 @@ var socket = io();
 var xhttp = new XMLHttpRequest();
 
 function appendButton() {
-    $('.modal-trigger').leanModal();
-    $('select').material_select();
 
     var deleteButtonArray = $('.delete');
     for (var i = 0; i < deleteButtonArray.length; i++) {
@@ -23,20 +21,24 @@ function appendButton() {
     }
 }
 
-$(document).ready(appendButton);
+$(document).ready(function() {
+    $('.modal-trigger').leanModal();
+    $('select').material_select();
+    appendButton();
+});
 
 function deletePostModal(postID) {
     console.log("test");
-    $('#modal'+postID).openModal();
+    $('#modal' + postID).openModal();
 }
 
-function deletePost(postID){
+function deletePost(postID) {
     $.post('/chat/delete', {
         postID: postID,
     }, function(data, succ) {
-        if(data.succ){
+        if (data.succ) {
             // console.log(data)
-            $("#post"+postID).remove();
+            $("#post" + postID).remove();
         }
     })
 }
@@ -54,11 +56,11 @@ function gymChange() {
     }, function(data) {
         $('#messages').empty();
         for (var i = 0; i < data.newsfeed.length; i++) {
+            console.log(data.newsfeed[i]);
             $('#messages').append($('<div>').html(messageTemplate(data.newsfeed[i])));
         }
+        appendButton();
     });
-
-    appendButton();
 
     // socket.emit('getGym', gym);
 
@@ -75,90 +77,39 @@ function gymChange() {
 // });
 
 function messageTemplate(template) {
-    /*var result =
-      '<div class="row center-block">' +
-       '<div class="col s12">' +
-         '<div class="card white">' +
-           '<div class="card-content black-text">' +
-             '<h2 class="card-title">' + template.message + '</h2>' +
-             '<img src="' + template.user.photo + '"/>' +
-             '<p>' + template.user.username + '</p>' +
-             '<p>' + template.posted + '</p>' +
-           '</div>' +
-           '<div class="card-action">' +
-             '<a href="/comments?postID={{_id}}" class ="black-text comments left" postID="{{_id}}">comments</a>' +
-             '<a class="black-text right" href="#">delete</a>' +
-           '</div>' +
-           '<br />' +
-         '</div>' +
-       '</div>' +
-     '</div>';*/
 
-    /*var result =
-        '<div class="row center-block">' +
+    var result =
+        '<div class="row center-block" id="post{{_id}}">' +
         '<div class="col s12">' +
         '<div class="card white">' +
         '<div class="card-content black-text">' +
+        '<img src="' + template.user.photo + '" />' +
+        '<p><b>' + template.user.username + '</b> posted on ' + template.posted + ':</p>' +
         '<div class="card-title">' +
         '<h2>' + template.message + '</h2>' +
-        '<p>' + template.gym + '</p>' +
+        '<p><i>' + template.gym + '</i></p>' +
         '</div>' +
-        '<img src="' + template.user.photo + '"/>' +
-        '<p>' + template.user.username + '</p>' +
-        '<p>' + template.posted + '</p>' +
         '</div>' +
         '<div class="card-action">' +
         '<a href="/comments?postID={{_id}}" class="btn blue darken-3 left comments" postID="{{_id}}">' + template.comments.length + ' comments</a>' +
-        '<button class="btn blue darken-3 white-text right" href="#" onclick="deletePost()" postID="{{_id}}">delete</a>' +
+        '<div class="delete" sameUser="' + template.sameUser + '" postID="{{_id}}">' +
+        '</div>' +
         '</div>' +
         '<br>' +
         '<br />' +
-        '<div id="modal1" class="modal">' +
+        '<div id="modal{{_id}}" class="modal">' +
         '<div class="modal-content">' +
         '<h4>Delete post?</h4>' +
         '<p>Are you sure you want to delete this post? Click "DELETE" below to delete this post or cancel to go back.</p>' +
         '</div>' +
         '<div class="modal-footer">' +
-        '<a class="modal-action modal-close btn blue darken-3 right" href="/post?id={{_id}}" rel="nofollow">DELETE</a>' +
-        '<a class="modal-action modal-close btn grey lighten-1 right">CANCEL</a>' +
+        '<a class="modal-action modal-close btn blue darken-3 right" href="#" rel="nofollow">DELETE</a>' +
+        '<a class="modal-action modal-close btn blue darken-3 left">CANCEL</a>' +
         '</div>' +
         '</div>' +
         '</div>' +
         '</div>' +
-        '</div>';*/
-
-    var result =
-      '<div class="row center-block" id="post{{_id}}">' +
-          '<div class="col s12">' +
-              '<div class="card white">' +
-                  '<div class="card-content black-text">' +
-                      '<img src="' + template.user.photo + '" />' +
-                      '<p><b>' + template.user.username + '</b> posted on ' + template.posted + ':</p>' +
-                      '<div class="card-title">' +
-                          '<h2>' + template.message + '</h2>' +
-                          '<p><i>' + template.gym + '</i></p>' +
-                      '</div>' +
-                  '</div>' +
-                  '<div class="card-action">' +
-                      '<a href="/comments?postID={{_id}}" class="btn blue darken-3 left comments" postID="{{_id}}">' + template.comments.length + ' comments</a>' +
-                      '<div class="delete" sameUser="' + template.sameUser + '" postID="{{_id}}">' +
-                      '</div>' +
-                  '</div>' +
-                  '<br>' +
-                  '<br />' +
-                  '<div id="modal{{_id}}" class="modal">' +
-                      '<div class="modal-content">' +
-                          '<h4>Delete post?</h4>' +
-                          '<p>Are you sure you want to delete this post? Click "DELETE" below to delete this post or cancel to go back.</p>' +
-                      '</div>' +
-                      '<div class="modal-footer">' +
-                          '<a class="modal-action modal-close btn blue darken-3 right" href="#" rel="nofollow">DELETE</a>' +
-                          '<a class="modal-action modal-close btn blue darken-3 left">CANCEL</a>' +
-                      '</div>' +
-                  '</div>' +
-              '</div>' +
-          '</div>' +
-      '</div>';
+        '</div>';
     return result;
 }
 

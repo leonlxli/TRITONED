@@ -21,7 +21,6 @@ exports.view = function(req, res) {
                 for (var i = 0; i < posts.length; i++) {
                     if (posts[i].user.username == req.user.username) {
                         posts[i].sameUser = true;
-                        console.log(posts[i]);
                     }
                     posts[i].numOfComments = posts[i].comments.length
                 }
@@ -46,10 +45,8 @@ exports.view = function(req, res) {
                 posted: -1
             }).exec(function(err, posts) {
                 for (var i = 0; i < posts.length; i++) {
-                    console.log(i);
-                    if (posts[i].username == req.user.username) {
+                    if (posts[i].user.username == req.user.username) {
                         posts[i].sameUser = true;
-                        console.log(posts[i]);
                     }
                 }
                 if (err) {
