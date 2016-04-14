@@ -4,18 +4,17 @@ function messageTemplate(template) {
       '<hr>' +
       '<li class="card white">' +
           '<div class="card-content black-text">' +
-              '<div class="message-content">' +
-                  '<h5>' + template.message + '</h5>' +
-              '</div>' +
               '<div class="user">' +
                   '<div class="user-image">' +
                       '<img src="' + template.photo + '" alt="">' +
                   '</div>' +
                   '<div class="user-info">' +
-                      '<span class="username">' + template.username + '</span>' +
-                      '<br/>' +
+                      '<span class="username">' + template.username + ' posted on </span>' +
                       '<span class="posted">' + new Date(template.posted) + '</span>' +
                   '</div>' +
+              '</div>' +
+              '<div class="message-content">' +
+                  '<h5>' + template.message + '</h5>' +
               '</div>' +
               '<button class="btn right blue darken-3" value="Delete" commentID={{_id}}' +
               '>Delete</button>' +

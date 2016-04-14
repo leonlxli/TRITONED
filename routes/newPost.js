@@ -15,12 +15,6 @@ exports.post = function(req, res) {
 	console.log(req.body);
     if (req.user){
 
-        if (req.body.gym == "") {
-            res.render("newPost", {
-                'notification': "You must choose a gym"
-            });
-        }
-
     	var newPost = new models.Posts({
                     'gym': req.body.gym,
                     'message': req.body.message,
@@ -30,7 +24,6 @@ exports.post = function(req, res) {
                     },
                     'posted': Date.now(),
                     'comments': [],
-                    'notification': ""
                 });
     	newPost.save(function(err, suc){
     		if (err){
