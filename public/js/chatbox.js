@@ -25,6 +25,16 @@ $(document).ready(function() {
     $('.modal-trigger').leanModal();
     $('select').material_select();
     appendButton();
+    var comments = $('.comments');
+    for (var i=0; i < comments.length;i++){
+        var numOfComments = $(comments[i]).attr("value");
+        if(numOfComments==1){
+            $(comments[i]).html(numOfComments+' comment')
+        }
+        else{
+            $(comments[i]).html(numOfComments+' comments')
+        }
+    }
 });
 
 function deletePostModal(postID) {
