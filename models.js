@@ -37,6 +37,7 @@ var postSchema = mongoose.Schema({
             default: Date.now()
         }
     }],
+    'numOfComments':Number,
     'notification': String
 });
 

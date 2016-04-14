@@ -21,6 +21,7 @@ exports.view = function(req, res) {
                         posts[i].sameUser = true;
                         console.log(posts[i]);
                     }
+                    posts[i].numOfComments = posts[i].comments.length
                 }
                 if (err) {
                     console.log(err);
