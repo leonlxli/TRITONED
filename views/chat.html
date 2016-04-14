@@ -37,13 +37,12 @@
                <div class="col s12">
                  <div class="card white">
                    <div class="card-content black-text">
-                     <div class="card-title">
+                      <img src="{{user.photo}}"/>
+                      <p><b>  {{user.username}}</b> posted on {{posted}}:</p>
+                     <div class="card-title" >
                        <h2>{{message}}</h2>
-                       <p>{{gym}}</p>
+                       <p><i>{{gym}}</i></p>
                      </div>
-                     <img src="{{user.photo}}"/>
-                     <p>{{user.username}}</p>
-                     <p>{{posted}}</p>
                    </div>
                    <div class="card-action">
                      <a href="/comments?postID={{_id}}" class="btn blue darken-3 left comments" postID="{{_id}}">{{numOfComments}} comments</a>
