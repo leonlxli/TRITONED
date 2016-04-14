@@ -16,6 +16,7 @@
     <div class="container">
         <br />
         <br />
+
         <h5 class="white-text center">Post and Comments</h5>
         <div class="card blue lighten-4">
             <div class="card-content black-text">
@@ -71,10 +72,39 @@
         <form id="send_comment" action="#" class="center center-block">
             <div>
                 <h6 class="white-text">Type up a comment here:<h6></div>
-        <input id="comment_content" class="white blue-text text-darken-4 container" placeholder="     Type a new comment and hit enter!" autocomplete="off" parent="{{_id}}" required/>
-        <input type="submit" value="Submit" class="btn blue darken-4">
+        <input id="comment_content" class="white blue-text text-darken-4 container" placeholder="     Type a new comment and click 'Post Comment'!" autocomplete="off" parent="{{_id}}" required/>
+        <!--<input type="submit" value="Submit" class="btn blue darken-4">-->
+
+        <div id="myModal" class = "modal" style="z-index:9999; top:20%">
+            <div class="modal-content">
+                <h4 align="left">Submit Post?</h4>
+                <p id="postMessage">Are you sure you want to post: </p>
+            </div>
+            <div class="modal-footer">
+                <input class="modal-action modal-close btn blue darken-3 right subBtn" id="submitBtn" type="submit" value="Post" onclick="redirect()" rel="nofollow" style="margin-left:20px">
+                <a class="modal-action modal-close btn grey lighten-1 right cancelBtn">CANCEL</a>
+            </div>
+        </div>
+
+        <div id="errModalmsg" class = "modal" style="z-index:9999; top:20%">
+            <div class="modal-content">
+                <h4 align="left">Empty post.</h4>
+                <p>You must enter a message in order to post.</p>
+            </div>
+            <div class="modal-footer">
+                <a class="modal-action modal-close btn blue darken-3 right" id="okBtn2">OK</a>
+            </div>
+        </div>
+
     </form>
+
+        <center>
+        <Button id="submitnewcomment" class="btn-large blue darken-4">Post Comment</Button>
+        <center>
+
   </div>
+
+
 </body>
 <script src="./js/jquery.min.js"></script>
 <script src="./js/comment.js"></script>

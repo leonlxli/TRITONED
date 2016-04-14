@@ -55,3 +55,42 @@ $(document).ready(function() {
         }
     }
 });
+
+
+var modal = document.getElementById('myModal');
+var errmodalmsg = document.getElementById('errModalmsg');
+
+// Get the button that opens the modal
+var btn = document.getElementById("submitnewcomment");
+// Get the elements that closes the modal
+var span = document.getElementsByClassName("cancelBtn")[0];
+var postBtn = document.getElementById("submitBtn");
+var okBtn2 = document.getElementById("okBtn2");
+
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+    
+    var message = $('#comment_content').val();
+
+    if (message == "") {
+        errmodalmsg.style.display = "block";
+    }
+    else {
+      $('#postMessage').append("'" + message + "'?");
+      modal.style.display = "block";
+    }
+    
+}
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    $('#postMessage').text("Are you sure you want to post: ");
+    modal.style.display = "none";
+}
+okBtn2.onclick = function() {
+    console.log("ok button pressed");
+    errmodalmsg.style.display = "none";
+}
+postBtn.onclick = function() {
+    console.log("ok button pressed");
+    modal.style.display = "none";
+}
