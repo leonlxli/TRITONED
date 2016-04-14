@@ -5,21 +5,14 @@ exports.view = function(req, res) {
     if (req.user) {
         console.log("helooooo")
         console.log(req.query);
-        mongoose.model('Posts').findOne({
+        mongoose.model('Posts').find({
             _id: req.query.postID
-        }, function(err, post) {
+        }, function(err, posts) {
             if (err) {
                 console.log(err);
             } else {
-
-                for(var i = 0; i<post.comments.length;i++){
-                    console.log(i);
-                    if(post.comments[i].username==req.user.username){
-                        post.comments[i].sameUser = true;
-                        console.log(post.comments[i]);
-                    }
-                }
-                res.render("comments", post);
+                console.log(posts);
+                res.render("comments", posts[0]);
             }
         })
     } else {
