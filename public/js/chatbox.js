@@ -153,29 +153,8 @@ function messageTemplate(template) {
     // })
 
 
-    socket.on('newComment', function(data) {
-        console.log("recieved comment");
-        console.log(data);
-        var parsedData = JSON.parse(data);
-        parsedData.posted = new Date(parsedData.posted);
-        $('#' + parsedData.parent_id).append($('<li>').html(commentTemplate(parsedData)));
-
-        function commentTemplate(template) {
-            console.log(template);
-            var result = '<div class="user">' +
-                '<div class="user-image">' +
-                '<img src="' + template.photo + '" alt="">' +
-                '</div>' +
-                '<div class="user-info">' +
-                '<span class="username">' + template.username + '</span><br/>' +
-                '<span class="posted">' + template.posted + '</span>' +
-                '</div>' +
-                '</div>' +
-                '<div class="message-content">' +
-                template.message +
-                '</div>';
-            return result;
-        }
+    socket.on('online', function(data) {
+        // $('#usersOnline').html(data.online);
     });
 
     socket.on('newsfeed', function(data) {
