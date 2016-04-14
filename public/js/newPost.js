@@ -19,11 +19,13 @@
 // Get the modal
 var modal = document.getElementById('myModal');
 var errmodal = document.getElementById('errModal');
+var errmodalmsg = document.getElementById('errModalmsg');
 // Get the button that opens the modal
 var btn = document.getElementById("submitnewpost");
 // Get the elements that closes the modal
 var span = document.getElementsByClassName("cancelBtn")[0];
 var okBtn = document.getElementById("okBtn");
+var okBtn2 = document.getElementById("okBtn2");
 // When the user clicks on the button, open the modal 
 btn.onclick = function() {
     
@@ -42,7 +44,7 @@ btn.onclick = function() {
         }
     }
     else {
-        //built in error message with css
+        errmodalmsg.style.display = "block";
     }
 }
 // When the user clicks on <span> (x), close the modal
@@ -53,4 +55,8 @@ span.onclick = function() {
 okBtn.onclick = function() {
     console.log("ok button pressed");
     errmodal.style.display = "none";
+}
+okBtn2.onclick = function() {
+    console.log("ok button pressed");
+    errmodalmsg.style.display = "none";
 }
