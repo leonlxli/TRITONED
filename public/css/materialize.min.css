@@ -6141,9 +6141,9 @@ select {
 .select-wrapper span.caret {
     color: initial;
     position: absolute;
-    right: 0;
-    top: 16px;
-    font-size: 10px
+    right: 40px;
+    top: 7px;
+    font-size: 20px
 }
 
 .select-wrapper span.caret.disabled {
