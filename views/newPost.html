@@ -11,13 +11,18 @@
      </ul>
    </div>
  </nav>
+
 <body class="blue darken-2">
+    <br>
+    <br>
+    <br><br>
+  <div class="container">
   <section class="container">
-    <br />
     <div id="inner">
         <div class="center">
+            <h5 class="white-text">   </h5>
             <h5 class="white-text">Create New Post</h5>
-        <form id="send_post" onsubmit="redirect()">
+        <form id="send_post">
             <div class="container white">
             <input class="black-text" id="message_content" placeholder="    Type your message here" autocomplete="off" required/>
             <select id="gym" value="{{value}}" class="black-text" required>
@@ -27,13 +32,36 @@
                 <option value="CanyonView">    CanyonView Gym</option>
             </select>
         </div>
-            <input class="btn-large blue darken-4" type="submit" value="Post">
+            <input id="submitnewpost" class="btn-large blue darken-4" type="submit" value="Post">
         </form>
         </center>
         </div>
+
+        <div id="myModal" class = "modal">
+            <div class="modal-content">
+                <h4>Submit Post?</h4>
+                <p id="postMessage">Are you sure you want to post: </p>
+            </div>
+            <div class="modal-footer">
+                <a class="modal-action modal-close btn blue darken-3 right subBtn" onclick="redirect()" rel="nofollow" >POST</a>
+                <a class="modal-action modal-close btn grey lighten-1 right cancelBtn">CANCEL</a>
+            </div>
+        </div>
+
+        <div id="errModal" class = "modal">
+            <div class="modal-content">
+                <h4>No gym chosen.</h4>
+                <p>You must pick a gym.</p>
+            </div>
+            <div class="modal-footer">
+                <a class="modal-action modal-close btn blue darken-3 right" id="okBtn">OK</a>
+            </div>
+        </div>
+
     </div>
 
   </section>
+</div>
 </body>
 
 
