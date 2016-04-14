@@ -85,7 +85,7 @@ function messageTemplate(template) {
            '</div>' +
            '<div class="card-action">' +
              '<a href="/comments?postID={{_id}}" class="btn blue darken-3 left comments" postID="{{_id}}">' + template.comments.length + ' comments</a>' +
-             '<button class="btn blue darken-3 white-text right" href="#" onclick="deletePost()" postID="{{_id}}">delete</a>' + 
+             '<button class="btn blue darken-3 white-text right" href="#" onclick="deletePost()" postID="{{_id}}">delete</a>' +
            '</div>' +
            '<br>' +
            '<br />' +
@@ -96,7 +96,7 @@ function messageTemplate(template) {
             '</div>' +
             '<div class="modal-footer">' +
               '<a class="modal-action modal-close btn blue darken-3 right" href="/post?id={{_id}}" rel="nofollow">DELETE</a>' +
-              '<a class="modal-action modal-close btn blue darken-3 left">CANCEL</a>' +
+              '<a class="modal-action modal-close btn grey lighten-1 right">CANCEL</a>' +
             '</div>' +
           '</div>' +
          '</div>' +
