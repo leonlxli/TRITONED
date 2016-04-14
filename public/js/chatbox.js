@@ -52,26 +52,6 @@ function gymChange() {
 
 function messageTemplate(template) {
     /*var result =
-        '<hr>' +
-        '<div class="user">' +
-        '<div class="user-image">' +
-        '<img src="' + template.user.photo + '" alt="">' +
-        '</div>' +
-        '<div class="user-info">' +
-        '<span class="username">' + template.user.username + '</span><br/>' +
-        '<span class="posted">' + template.posted + '</span>' +
-        '</div>' +
-        '</div>' +
-        '<div class="message-content">' +
-        template.message +
-        '</div>'+
-        '<a href="/comments?postID='+template._id +
-        '" class ="comments" postID="' +
-        template._id +
-        '"">comments </a>';
-    return result;*/
-
-    var result =
       '<div class="row center-block">' +
        '<div class="col s12">' +
          '<div class="card white">' +
@@ -86,6 +66,39 @@ function messageTemplate(template) {
              '<a class="black-text right" href="#">delete</a>' +
            '</div>' +
            '<br />' +
+         '</div>' +
+       '</div>' +
+     '</div>';*/
+
+    var result =
+      '<div class="row center-block">' +
+      '<div class="col s12">' +
+         '<div class="card white">' +
+           '<div class="card-content black-text">' +
+             '<div class="card-title">' +
+               '<h2>' + template.message + '</h2>' +
+               '<p>' + template.gym + '</p>' +
+             '</div>' +
+             '<img src="' + template.user.photo + '"/>' +
+             '<p>' + template.user.username + '</p>' +
+             '<p>' + template.posted + '</p>' +
+           '</div>' +
+           '<div class="card-action">' +
+             '<a href="/comments?postID={{_id}}" class="btn blue darken-3 left comments" postID="{{_id}}">' + template.comments.length + ' comments</a>' +
+             '<button class="btn blue darken-3 white-text right" href="#" onclick="deletePost()" postID="{{_id}}">delete</a>' +
+           '</div>' +
+           '<br>' +
+           '<br />' +
+           '<div id="modal1" class="modal">' +
+           '<div class="modal-content">' +
+              '<h4>Delete post?</h4>' +
+              '<p>Are you sure you want to delete this post? Click "DELETE" below to delete this post or cancel to go back.</p>' +
+            '</div>' +
+            '<div class="modal-footer">' +
+              '<a class="modal-action modal-close btn blue darken-3 right" href="/post?id={{_id}}" rel="nofollow">DELETE</a>' +
+              '<a class="modal-action modal-close btn grey lighten-1 right">CANCEL</a>' +
+            '</div>' +
+          '</div>' +
          '</div>' +
        '</div>' +
      '</div>';

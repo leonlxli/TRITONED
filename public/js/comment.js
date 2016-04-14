@@ -1,5 +1,5 @@
 function messageTemplate(template) {
-    var result =
+    /*var result =
         '<hr>' +
         '<div class="user">' +
         '<div class="user-image">' +
@@ -12,7 +12,31 @@ function messageTemplate(template) {
         '</div>' +
         '<div class="message-content">' +
         template.message +
-        '</div>';
+        '</div>';*/
+
+    var result =
+      '<hr>' +
+      '<li class="card white">' +
+          '<div class="card-content black-text">' +
+              '<div class="message-content">' +
+                  '<h5>' + template.message + '</h5>' +
+              '</div>' +
+              '<div class="user">' +
+                  '<div class="user-image">' +
+                      '<img src="' + template.photo + '" alt="">' +
+                  '</div>' +
+                  '<div class="user-info">' +
+                      '<span class="username">' + template.username + '</span>' +
+                      '<br/>' +
+                      '<span class="posted">' + template.posted + '</span>' +
+                  '</div>' +
+              '</div>' +
+              '<button class="btn right blue darken-3" value="Delete" commentID={{_id}}' +
+              '>Delete</button>' + 
+              '<br>' +
+              '<br>' +
+          '</div>' +
+      '</li>';
     return result;
 }
 
@@ -67,3 +91,4 @@ $(document).ready(function() {
         }
     }
 });
+
