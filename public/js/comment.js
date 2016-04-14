@@ -1,5 +1,5 @@
 function messageTemplate(template) {
-    var result =
+    /*var result =
         '<hr>' +
         '<div class="user">' +
         '<div class="user-image">' +
@@ -12,7 +12,31 @@ function messageTemplate(template) {
         '</div>' +
         '<div class="message-content">' +
         template.message +
-        '</div>';
+        '</div>';*/
+
+    var result =
+      '<hr>' + 
+      '<li class="card white">' +
+          '<div class="card-content black-text">' +
+              '<div class="message-content">' +
+                  '<h5>' + template.message + '</h5>' +
+              '</div>' +
+              '<div class="user">' +
+                  '<div class="user-image">' +
+                      '<img src="' + template.photo + '" alt="">' +
+                  '</div>' +
+                  '<div class="user-info">' +
+                      '<span class="username">' + template.username + '</span>' +
+                      '<br/>' +
+                      '<span class="posted">' + template.posted + '</span>' +
+                  '</div>' +
+              '</div>' +
+              '<div class="delete card-action" sameUser="' + template.sameUser + '" commentID="{{_id}}">' +
+              '</div>' +
+              '<br>' +
+              '<br>' +
+          '</div>' +
+      '</li>';
     return result;
 }
 
