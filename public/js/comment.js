@@ -1,6 +1,36 @@
 function messageTemplate(template) {
+    console.log('OK.JPG');
     console.log(template);
-    
+    var result =
+      '<li class="card white" id="comment' + template.commentID + '">' +
+          '<div class="card-content black-text">' +
+              '<div class="user">' +
+                  '<div class="user-image">' +
+                      '<img src="' + template.photo + '" alt="" style="vertical-align: middle; padding-right: 3px;">' +
+                      '<span class="username"><b>' + template.username + '</b> posted on </span>' +
+                      '<span class="posted">' + new Date(template.posted) + '</span>' +
+                  '</div>' +
+              '</div>' +
+              '<div class="message-content">' +
+                  '<h5>' + template.message + '</h5>' +
+              '</div>' +
+              '<div class="delete" sameUser="' + template.username + '" commentID="' + template.commentID + '">' +
+              '</div>' +
+              '<br>' +
+              '<br>' +
+              '<div id="modal' + template.commentID + '" class = "modal">' +
+                  '<div class="modal-content">' +
+                      '<h4>Delete post?</h4>' +
+                      '<p>Are you sure you want to delete this post? Click "DELETE" below to delete this post or cancel to go back.</p>' +
+                  '</div>' +
+                  '<div class="modal-footer">' +
+                      '<a class="modal-action modal-close btn blue darken-3 right delBtn" commentID="' + template.commentID + '" onclick="deleteComment(\'' + template.commentID + '\')" rel="nofollow" style="margin-left:20px">DELETE</a>' +
+                      '<a class="modal-action modal-close btn grey lighten-1 right">CANCEL</a>' +
+                  '</div>' +
+              '</div>' +
+          '</div>' +
+      '</li>';
+    console.log(result);
     return result;
 }
 
@@ -67,9 +97,9 @@ var span = document.getElementsByClassName("cancelBtn")[0];
 var postBtn = document.getElementById("submitBtn");
 var okBtn2 = document.getElementById("okBtn2");
 
-// When the user clicks on the button, open the modal 
+// When the user clicks on the button, open the modal
 btn.onclick = function() {
-    
+
     var message = $('#comment_content').val();
 
     if (message == "") {
@@ -79,7 +109,7 @@ btn.onclick = function() {
       $('#postMessage').append("'" + message + "'?");
       modal.style.display = "block";
     }
-    
+
 }
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {

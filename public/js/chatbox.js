@@ -87,7 +87,7 @@ function gymChange() {
 // });
 
 function messageTemplate(template) {
-
+  console.log(template);
     /*var result =
         '<div class="row center-block" id="post{{_id}}">' +
         '<div class="col s12">' +
