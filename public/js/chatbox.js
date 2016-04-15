@@ -126,7 +126,7 @@ function messageTemplate(template) {
               '<div class="card white">' +
                   '<div class="card-content black-text">' +
                       '<img style="vertical-align:middle;" src="' + template.user.photo + '" />' +
-                      '<span><b>  ' + template.user.username + '</b> posted in <a class="blue-text"><i>' + template.gym + '</i></a> on ' + template.posted + ':</p></span>' +
+                      '<span><b>  ' + template.user.username + '</b> posted in <a class="blue-text"><i>' + template.gym + '</i></a> on ' + new Date(template.posted) + ':</p></span>' +
                       '<div class="card-title">' +
                           '<p>' + template.message + '</p>' +
                       '</div>' +
