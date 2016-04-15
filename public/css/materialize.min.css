@@ -9,13 +9,21 @@ html {
     overflow: hidden;
 }
 
-body{
+body {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     overflow: auto;
+}
+
+#greeting {
+    height:100%;
+    width: 100%;
+    font-weight: bold;
+    color: white;
+    font-size: 6vw;
 }
 
 .materialize-red {
@@ -34,15 +42,43 @@ body{
     color: #fdeaeb !important
 }
 
+.newCenter {
+    position: absolute;
+    left: 10%;
+    top: 10%;
+}
+
+#login_Container {
+    border-style: solid;
+    border-color: white;
+    border-width: 20px;
+    height: 80%;
+    width: 80%;
+    padding: 30px;
+}
+
+#backgroundIMGIndex {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url('../img/beachworkout1.jpg');
+    /*background-size: 100%;*/
+    
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center;
+}
+
 #backgroundIMG {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url('../img/gym-weights (1).jpg');
     /*background-size: 100%;*/
-    background-repeat:no-repeat;
-    -webkit-background-size:cover;
-    -moz-background-size:cover;
-    -o-background-size:cover;
-    background-size:cover;
-    background-position:center;
+    
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center;
 }
 
 .outer {
@@ -4366,7 +4402,8 @@ footer.page-footer .footer-copyright {
 }
 
 .card {
-	box-shadow: 10px; ;
+    box-shadow: 10px;
+    ;
     position: relative;
     margin: 0.5rem 0 1rem 0;
     background-color: #fff;
@@ -4448,7 +4485,7 @@ footer.page-footer .footer-copyright {
 }
 
 .card .card-content {
-    padding: 20px;
+    padding: 20px 20px 0px 20px;
     border-radius: 0 0 2px 2px
 }
 
@@ -4465,7 +4502,7 @@ footer.page-footer .footer-copyright {
     position: relative;
     background-color: inherit;
     border-top: 1px solid rgba(160, 160, 160, 0.2);
-    padding: 20px;
+    padding: 10px 20px 25px 20px;
     z-index: 2
 }
 
