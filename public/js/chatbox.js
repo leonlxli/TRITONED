@@ -134,7 +134,7 @@ function messageTemplate(template) {
         '</div>';*/
     var result =
         '<div class="row center-block" id="post' + template._id + '">' +
-        '<div class="col s12">' +
+        '<div class="col s10 offset-s1">' +
         '<div class="card white">' +
         '<div class="card-content black-text">' +
         '<img style="vertical-align:middle;" src="' + template.user.photo + '" />' +
