@@ -23,15 +23,13 @@
         <div class="center">
             <h5 class="white-text">Create New Post</h5>
         <form id="send_post">
-            <div class="container white">
-            <input class="black-text" id="message_content" placeholder="Type your message here" autocomplete="off" style="padding-left:20px;" required/>
-            <select id="gym" value="{{value}}" class="black-text" required>
-                <option value="" disabled selected>    Choose a gym from the dropdown menu</option>
-                <option value="Rimac">    Rimac</option>
-                <option value="Main_Gym">    Main Gym</option>
-                <option value="CanyonView">    CanyonView Gym</option>
-            </select>
-        </div>
+            <div class="container col input-field">
+              <input class="black-text" id="message_content" placeholder="Type your message here" autocomplete="off" required/>
+              <button type="button" style="background-color: transparent; border-color: transparent;" value="Rimac" class="gymButtonChoose" class="btn-floating btn-xlarge waves-effect waves-light blue darken-4"><img class="gymImg" src="./img/rimac.png" width="170" height="170" /></button>
+              <button type="button" style="background-color: transparent; border-color: transparent;" value="Main_Gym" class="gymButtonChoose" class="btn-floating btn-xlarge waves-effect waves-light blue darken-4"><img class="gymImg" src="./img/main.png" width="170" height="170" /></button>
+              <button type="button" style="background-color: transparent; border-color: transparent;" value="CanyonView" class="gymButtonChoose" class="btn-floating btn-xlarge waves-effect waves-light blue darken-4"><img class="gymImg" src="./img/canyonview.png" width="170" height="170" /></button>
+              <input id="gym" hidden />
+          </div>
             <div id="myModal" class = "modal">
                 <div class="modal-content">
                     <h4 align="left">Submit Post?</h4>
@@ -89,6 +87,7 @@
   });
 
   function redirect() {
+    console.log('redirecting...');
     window.location.href = '/chat';
   }
 </script>

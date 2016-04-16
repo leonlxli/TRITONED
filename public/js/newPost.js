@@ -26,9 +26,9 @@ var btn = document.getElementById("submitnewpost");
 var span = document.getElementsByClassName("cancelBtn")[0];
 var okBtn = document.getElementById("okBtn");
 var okBtn2 = document.getElementById("okBtn2");
-// When the user clicks on the button, open the modal 
+// When the user clicks on the button, open the modal
 btn.onclick = function() {
-    
+
     var message = $('#message_content').val();
     var gym = $('#gym').val();
 
@@ -60,3 +60,25 @@ okBtn2.onclick = function() {
     console.log("ok button pressed");
     errmodalmsg.style.display = "none";
 }
+
+$('.gymImg').mouseenter(function() {
+    if (!$(this).hasClass("selected")) {
+        $(this).addClass("hovered");
+    }
+}).mouseleave(function() {
+    $(this).removeClass("hovered");
+}).click(function() {
+    var buttons = $('.gymImg');
+    for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i] != this) {
+            $(buttons[i]).removeClass("selected")
+        } else {
+            $(buttons[i]).addClass("selected")
+            $(buttons[i]).removeClass("hovered")
+        }
+    }
+});
+
+$('.gymButtonChoose').click(function() {
+  $("#gym").val($(this).val());
+});
