@@ -172,6 +172,7 @@ footer {
 
 @media only screen and (max-width: 825px) {
     #inner {
+        z-index: 1;
         width: 95%
     }
     #messages {
