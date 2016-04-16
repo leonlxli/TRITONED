@@ -135,7 +135,6 @@ function messageTemplate(template) {
                       '</div>' +
                   '</div>' +
                   '<br>' +
-                  '<br />' +
                   '<div id="modal' + template._id + '" class="modal">' +
                       '<div class="modal-content">' +
                           '<h4>Delete post?</h4>' +
