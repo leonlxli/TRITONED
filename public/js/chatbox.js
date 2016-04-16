@@ -50,8 +50,9 @@ $(document).ready(function() {
         } else {
             $(comments[i]).html(numOfComments + ' comments')
         }
-
     }
+    $("#all").addClass("selected");
+
 });
 
 function deletePostModal(postID) {
