@@ -4835,6 +4835,11 @@ footer.page-footer .footer-copyright {
     height: 55.5px
 }
 
+.btn-floating.btn-xlarge {
+    width: 100px;
+    height: 100px
+}
+
 .btn-floating.btn-large i {
     line-height: 55.5px
 }

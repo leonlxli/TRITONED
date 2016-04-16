@@ -53,10 +53,10 @@ function deletePost(postID) {
     })
 }
 
-function gymChange() {
+function gymChange(e) {
     console.log("Hello");
-    var myselect = document.getElementById("current_gym");
-    var gym = myselect.options[myselect.selectedIndex].value;
+    var gym = e.getAttribute("value");
+    console.log(gym);
     var data = new FormData();
     var url = '/chat?gym=' + gym;
     // window.location.href = url;
@@ -71,9 +71,7 @@ function gymChange() {
         }
         appendButton();
     });
-
     // socket.emit('getGym', gym);
-
 }
 
 // $(".comments").click(function() {
