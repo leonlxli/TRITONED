@@ -1,13 +1,16 @@
 // var models = require("../models");
 var mongoose = require('mongoose');
 
+
 exports.delete = function(req, res) {
     console.log(req.body.postID);
     mongoose.model('Posts')
         .remove({
             _id: req.body.postID
         }, function(data) {
-            res.json({succ:"It worked"});
+            res.json({
+                succ: "It worked"
+            });
         });
 }
 

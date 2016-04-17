@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var dateFormat = require('dateformat');
 
 var userSchema = mongoose.Schema({
     'twitterID': String,
@@ -24,10 +25,7 @@ var postSchema = mongoose.Schema({
         'photo': String
     },
     'message': String,
-    'posted': {
-        type: Date,
-        default: Date.now()
-    },
+    'posted': String,
     'comments': [{
         'sameUser': {
             type: Boolean,
@@ -36,10 +34,7 @@ var postSchema = mongoose.Schema({
         'photo': String,
         'message': String,
         'username': String,
-        'posted': {
-            type: Date,
-            default: Date.now()
-        }
+        'posted': String
     }],
     'numOfComments': Number,
     'notification': String

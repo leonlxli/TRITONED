@@ -9,6 +9,14 @@ html {
     overflow: hidden;
 }
 
+.username{
+    color:#9197A3;
+}
+
+.posted{
+    color:#9197A3;
+}
+
 .selected {
     border-color: yellow;
     border-style: solid;

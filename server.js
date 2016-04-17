@@ -14,7 +14,6 @@ const passport = require('passport');
 
 require("dotenv").load();
 var models = require("./models");
-var db = mongoose.connection;
 
 var router = {
     index: require("./routes/index"),

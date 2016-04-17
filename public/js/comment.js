@@ -1,13 +1,13 @@
 function messageTemplate(template) {
     console.log(template);
     var result =
-        '<li class="card white" id="comment' + template.commentID + '">' +
+        '<li class="card blue lighten-4" id="comment' + template.commentID + '">' +
         '<div class="card-content black-text">' +
         '<div class="user">' +
         '<div class="user-image">' +
         '<img src="' + template.photo + '" alt="" style="vertical-align: middle; padding-right: 3px;">' +
         '<span class="username"><b>' + template.username + '</b> posted on </span>' +
-        '<span class="posted">' + new Date(template.posted) + '</span>' +
+        '<span class="posted">' + template.posted + '</span>' +
         '</div>' +
         '</div>' +
         '<div class="message-content">' +
@@ -71,7 +71,7 @@ $('#send_comment').submit(function(e) {
 $(document).ready(function() {
     $('select').material_select();
     $('.modal-trigger').leanModal();
-    console.log("ready");
+    // $('abbr.timeago').timeago();
     putDeleteButtons();
 });
 

@@ -138,7 +138,7 @@ function messageTemplate(template) {
         '<div class="card white">' +
         '<div class="card-content black-text">' +
         '<img style="vertical-align:middle;" src="' + template.user.photo + '" />' +
-        '<span><b>  ' + template.user.username + '</b> posted in <a class="blue-text"><i>' + template.gym + '</i></a> on ' + new Date(template.posted) + ':</p></span>' +
+        '<span><b>  ' + template.user.username + '</b> posted in <a class="blue-text"><i>' + template.gym + '</i></a> on ' + template.posted + ':</p></span>' +
         '<div class="card-title">' +
         '<p>' + template.message + '</p>' +
         '</div>' +
@@ -198,7 +198,7 @@ function messageTemplate(template) {
 
     socket.on('newsfeed', function(data) {
         var parsedData = JSON.parse(data);
-        parsedData.posted = new Date(parsedData.posted);
+        parsedData.posted = parsedData.posted;
         $('#messages').prepend($('<div>').html(messageTemplate(parsedData)));
     });
 })($);

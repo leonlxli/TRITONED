@@ -8,9 +8,9 @@
         $.post('/newPost', {
             message: message,
             gym: gym
-        }, function(err, success){
-        	console.log(err);
-        	console.log(success);
+        }, function(err, success) {
+            console.log(err);
+            console.log(success);
         });
     })
 })($);
@@ -28,27 +28,26 @@ var okBtn = document.getElementById("okBtn");
 var okBtn2 = document.getElementById("okBtn2");
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
+        console.log("heloooo");
+        var message = $('#message_content').val();
+        var gym = $('#gym').val();
+        console.log(gym)
 
-    var message = $('#message_content').val();
-    var gym = $('#gym').val();
-
-    if (message != "") {
-        if (gym == "Rimac" || gym == "CanyonView" || gym == "Main_Gym") {
-            $('#postMessage').append("'" + message + "'" + " to " + gym + "?");
-            modal.style.display = "block";
-        }
-        else {
-            //need to choose a gym
-            console.log("error module displayed")
-            errmodal.style.display = "block";
-            $('#errModal').leanModal();
+        if (message != "") {
+            if (gym == "Rimac" || gym == "CanyonView" || gym == "Main_Gym") {
+                $('#postMessage').append("'" + message + "'" + " to " + gym + "?");
+                modal.style.display = "block";
+            } else {
+                //need to choose a gym
+                console.log("error module displayed")
+                errmodal.style.display = "block";
+                $('#errModal').leanModal();
+            }
+        } else {
+            errmodalmsg.style.display = "block";
         }
     }
-    else {
-        errmodalmsg.style.display = "block";
-    }
-}
-// When the user clicks on <span> (x), close the modal
+    // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     $('#postMessage').text("Are you sure you want to post: ");
     modal.style.display = "none";
@@ -60,6 +59,12 @@ okBtn.onclick = function() {
 okBtn2.onclick = function() {
     console.log("ok button pressed");
     errmodalmsg.style.display = "none";
+}
+
+
+function redirect() {
+    console.log('redirecting...');
+    window.location.href = '/chat';
 }
 
 $('.gymImg').mouseenter(function() {
@@ -81,5 +86,5 @@ $('.gymImg').mouseenter(function() {
 });
 
 $('.gymButtonChoose').click(function() {
-  $("#gym").val($(this).val());
+    $("#gym").val($(this).val());
 });
