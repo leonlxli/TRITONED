@@ -1,11 +1,8 @@
 <header>
 </header>
-<nav class="blue darken-4">
+<nav class="blue darken-3">
     <div class="nav-wrapper">
         <a href="/chat" class="brand-logo center white-text"><b>TRITONED</b></a>
-        <!--<ul class="right">
-        <li><a href="/newpost"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a></li>
-     </ul>-->
         <ul class="left">
             <li><a href="/chat"><i class="fa fa-arrow-left fa-2x" aria-hidden="true" style="vertical-align: middle; padding-right: 5px;"></i><span>Back</span></a></li>
         </ul>
@@ -13,61 +10,63 @@
 </nav>
 
 <body class="blue darken-2" id="backgroundIMG">
-    <div class="veil">
-        <br>
-        <br>
-        <br>
-        <div class="container">
-            <section class="container">
-                <div id="inner">
-                    <div class="center">
-                        <h5 class="white-text">Create New Post</h5>
-                        <img src="./img/logo.png" alt="" height="90px" width="120px" />
-                        <form id="send_post">
-                            <div class="container col input-field">
-                                <input class="white-text" id="message_content" placeholder="Type your message here" autocomplete="off" required/>
+    <div class="veil2">
+        <div class="veil">
+            <br>
+            <br>
+            <br>
+            <div class="container paddingTop">
+                <section class="container">
+                    <div id="inner">
+                        <div class="center">
+                            <img src="./img/logo.png" alt="" height="90px" width="120px" />
+                            <h2 class="white-text">Create A New Post</h5>
+                            <form id="send_post">
+                            <div class="newPostContainer">
+                              <input class="white-text" id="message_content" placeholder="What's going on at the gym?" style="background: url('{{profPic}}') no-repeat scroll 0px -1px; padding-left:60px" autocomplete="off" required/>
+                            </div>
+                                <h4 class="white-text"> Which gym are you talking about? </h4>
                                 <button type="button" style="background-color: transparent; border-color: transparent;" value="Rimac" class="gymButtonChoose" class="btn-floating btn-xlarge waves-effect waves-light blue darken-4"><img class="gymImg" src="./img/rimac.png" width="170" height="170" /></button>
                                 <button type="button" style="background-color: transparent; border-color: transparent;" value="Main_Gym" class="gymButtonChoose" class="btn-floating btn-xlarge waves-effect waves-light blue darken-4"><img class="gymImg" src="./img/main.png" width="170" height="170" /></button>
                                 <button type="button" style="background-color: transparent; border-color: transparent;" value="CanyonView" class="gymButtonChoose" class="btn-floating btn-xlarge waves-effect waves-light blue darken-4"><img class="gymImg" src="./img/canyonview.png" width="170" height="170" /></button>
-                                <input id="gym" hidden />
-                            </div>
-                            <div id="myModal" class="modal">
-                                <div class="modal-content">
-                                    <h4 align="left">Submit Post?</h4>
-                                    <p id="postMessage">Are you sure you want to post: </p>
+                                <div id="myModal" class="modal">
+                                    <div class="modal-content">
+                                        <h4 align="left">Submit Post?</h4>
+                                        <p id="postMessage">Are you sure you want to post: </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input class="modal-action modal-close btn blue darken-3 right subBtn" type="submit" value="Post" onclick="redirect()" rel="nofollow" style="margin-left:20px">
+                                        <a class="modal-action modal-close btn grey lighten-1 right cancelBtn">CANCEL</a>
+                                    </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <input class="modal-action modal-close btn blue darken-3 right subBtn" type="submit" value="Post" onclick="redirect()" rel="nofollow" style="margin-left:20px">
-                                    <a class="modal-action modal-close btn grey lighten-1 right cancelBtn">CANCEL</a>
+                                <div id="errModal" class="modal">
+                                    <div class="modal-content">
+                                        <h4 align="left">No gym chosen.</h4>
+                                        <p>You must pick a gym.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="modal-action modal-close btn blue darken-3 right" id="okBtn">OK</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="errModal" class="modal">
-                                <div class="modal-content">
-                                    <h4 align="left">No gym chosen.</h4>
-                                    <p>You must pick a gym.</p>
+                                <div id="errModalmsg" class="modal">
+                                    <div class="modal-content">
+                                        <h4 align="left">Empty post.</h4>
+                                        <p>You must enter a message in order to post.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="modal-action modal-close btn blue darken-3 right" id="okBtn2">OK</a>
+                                    </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <a class="modal-action modal-close btn blue darken-3 right" id="okBtn">OK</a>
-                                </div>
-                            </div>
-                            <div id="errModalmsg" class="modal">
-                                <div class="modal-content">
-                                    <h4 align="left">Empty post.</h4>
-                                    <p>You must enter a message in order to post.</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <a class="modal-action modal-close btn blue darken-3 right" id="okBtn2">OK</a>
-                                </div>
-                            </div>
-                        </form>
-                        <Button id="submitnewpost" class="btn-large blue darken-4">Post</Button>
-                        </center>
+                            </form>
+                            <Button id="submitnewpost" class="btn-large blue darken-4">Create Post</Button>
+                            </center>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
+            <br>
+            <br>
         </div>
-        <br>
-        <br>
     </div>
 </body>
 <script src="./js/jquery.min.js"></script>

@@ -4,7 +4,9 @@ var mongoose = require('mongoose');
 
 exports.view = function(req, res) {
     if (req.user) {
-        res.render("newPost", {});
+        // console.log(req.user);
+        // console.log(req.user._json.profile_image_url)
+        res.render("newPost", {'profPic': req.user._json.profile_image_url});
     }
     else{
     	res.redirect("/");
@@ -14,7 +16,6 @@ exports.view = function(req, res) {
 exports.post = function(req, res) {
 	console.log(req.body);
     if (req.user){
-
     	var newPost = new models.Posts({
                     'gym': req.body.gym,
                     'message': req.body.message,

@@ -16,6 +16,16 @@ html {
     border-radius: 50%;
 }
 
+.newPostContainer{
+    display: inline-block;
+    width: 100%;
+
+}
+
+#message_content{
+    height: 4rem;
+    width:80%;
+}
 .posts{
     padding-top: 50px;
 }
@@ -3309,6 +3319,11 @@ input[type=range]+.thumb {
     width: 90%
 }
 
+
+.paddingTop{
+    padding-top: 50px;
+}
+
 @media only screen and (min-width: 601px) {
     .container {
         width: 85%
@@ -5454,8 +5469,8 @@ textarea.materialize-textarea {
     outline: none;
     height: 3rem;
     width: 100%;
-    font-size: 1rem;
-    margin: 0 0 15px 0;
+    font-size: 1.2rem;
+    margin: 0 0 0 0;
     padding: 0;
     box-shadow: none;
     box-sizing: content-box;
