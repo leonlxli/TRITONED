@@ -18,7 +18,7 @@ exports.view = function(req, res) {
 exports.post = function(req, res) {
     console.log(req.body);
     var now = new Date();
-    var date = dateFormat(now, "h:MM:ss TT, dddd, mmmm");
+    var date = dateFormat(now, "h:MM TT, dddd, mmmm dS, yyyy");
     console.log(typeof(date));
     if (req.user) {
         var newPost = new models.Posts({

@@ -45,7 +45,7 @@ exports.post = function(req, res) {
     // console.log("posting");
     // console.log(req.body);
     var now = new Date();
-    var date = dateFormat(now, "h:MM:ss TT, dddd, mmmm");
+    var date = dateFormat(now, "h:MM TT, dddd, mmmm dS, yyyy");
     mongoose.model('Posts').findOne({
         _id: req.body.post_id
     }, function(err, posts) {
