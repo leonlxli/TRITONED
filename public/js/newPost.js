@@ -34,7 +34,7 @@ btn.onclick = function() {
         console.log(gym)
 
         if (message != "") {
-            if (gym == "Rimac" || gym == "CanyonView" || gym == "Main_Gym") {
+            if (gym == "Rimac" || gym == "Canyon View Gym" || gym == "Main Gym") {
                 $('#postMessage').append("'" + message + "'" + " to " + gym + "?");
                 modal.style.display = "block";
             } else {
