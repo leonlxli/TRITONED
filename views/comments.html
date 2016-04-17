@@ -8,67 +8,68 @@
 </nav>
 
 <body class="blue darken-2" id="backgroundIMG">
+    <div class="veil2">
 
-    <body class="blue darken-2">
-        <br />
-        <br />
-        <div class="container">
+        <body class="blue darken-2">
             <br />
             <br />
-            <h5 class="white-text center">Post and Comments</h5>
-            <div class="card blue lighten-4">
-                <div class="card-content black-text">
-                    <div class="user">
-                        <div class="user-image">
-                            <img src="{{user.photo}}" alt="" style="vertical-align: middle;">
-                            <span class="username black-text"><b>{{user.username}}</b> posted on </span>
-                            <span class="posted black-text">{{posted}}</span>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="message-content" id="originalPost" postID="{{_id}}">
-                        <h5 class="black-text">{{message}}</h5>
-                        <br>
-                    </div>
-                </div>
-            </div>
-            <ul id="comments">
-                {{#each comments}}
-                <li class="card white" id="comment{{_id}}">
+            <div class="container">
+                <br />
+                <br />
+                <h5 class="white-text center">Post and Comments</h5>
+                <div class="card blue lighten-4">
                     <div class="card-content black-text">
                         <div class="user">
                             <div class="user-image">
-                                <img src="{{photo}}" alt="" style="vertical-align: middle;">
-                                <span class="username"><b>{{username}}</b> posted on </span>
-                                <span class="posted">{{posted}}</span>
+                                <img src="{{user.photo}}" alt="" style="vertical-align: middle;">
+                                <span class="username black-text"><b>{{user.username}}</b> posted on </span>
+                                <span class="posted black-text">{{posted}}</span>
                             </div>
                         </div>
-                        <div class="message-content">
-                            <h5>{{message}}</h5>
-                        </div>
-                        <div class="delete" sameUser="{{sameUser}}" commentID="{{_id}}">
-                            <!-- code for the delete button is in comment.js in the document.ready function -->
-                        </div>
-                        <br>
-                        <br>
-                        <div id="modal{{_id}}" class="modal">
-                            <div class="modal-content">
-                                <h4>Delete post?</h4>
-                                <p>Are you sure you want to delete this post? Click "DELETE" below to delete this post or cancel to go back.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <!--a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a-->
-                                <a class="modal-action modal-close btn blue darken-3 right delBtn" commentID="{{_id}}" onclick="deleteComment('{{_id}}')" rel="nofollow" style="margin-left:20px">DELETE</a>
-                                <a class="modal-action modal-close btn grey lighten-1 right">CANCEL</a>
-                            </div>
+                        <br />
+                        <div class="message-content" id="originalPost" postID="{{_id}}">
+                            <h5 class="black-text">{{message}}</h5>
+                            <br>
                         </div>
                     </div>
-                </li>
-                {{/each}}
-            </ul>
-            <form id="send_comment" action="#" class="center center-block">
-                <div>
-                    <h6 class="white-text">Type up a comment here:<h6></div>
+                </div>
+                <ul id="comments">
+                    {{#each comments}}
+                    <li class="card white" id="comment{{_id}}">
+                        <div class="card-content black-text">
+                            <div class="user">
+                                <div class="user-image">
+                                    <img src="{{photo}}" alt="" style="vertical-align: middle;">
+                                    <span class="username"><b>{{username}}</b> posted on </span>
+                                    <span class="posted">{{posted}}</span>
+                                </div>
+                            </div>
+                            <div class="message-content">
+                                <h5>{{message}}</h5>
+                            </div>
+                            <div class="delete" sameUser="{{sameUser}}" commentID="{{_id}}">
+                                <!-- code for the delete button is in comment.js in the document.ready function -->
+                            </div>
+                            <br>
+                            <br>
+                            <div id="modal{{_id}}" class="modal">
+                                <div class="modal-content">
+                                    <h4>Delete post?</h4>
+                                    <p>Are you sure you want to delete this post? Click "DELETE" below to delete this post or cancel to go back.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <!--a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a-->
+                                    <a class="modal-action modal-close btn blue darken-3 right delBtn" commentID="{{_id}}" onclick="deleteComment('{{_id}}')" rel="nofollow" style="margin-left:20px">DELETE</a>
+                                    <a class="modal-action modal-close btn grey lighten-1 right">CANCEL</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+                <form id="send_comment" action="#" class="center center-block">
+                    <div>
+                        <h6 class="white-text">Type up a comment here:<h6></div>
         <input id="comment_content" class="white blue-text text-darken-4 container" placeholder="Type a new comment and click 'Post Comment'!" autocomplete="off" parent="{{_id}}" style="padding-left:20px;" required/>
         <!--<input type="submit" value="Submit" class="btn blue darken-4">-->
 
@@ -100,6 +101,7 @@
         <center>
 
 <br><br><br>
+</div>
 </div>
 </body>
 <script src="./js/jquery.min.js"></script>
