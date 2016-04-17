@@ -23,6 +23,16 @@
                     <div class="center">
                         <h5 class="white-text">Create New Post</h5>
                         <img src="./img/logo.png" alt="" height="90px" width="120px" />
+                        <div id="myModal" class="modal" style="z-index: 1;">
+                            <div class="modal-content">
+                                <h4 align="left">Submit Post?</h4>
+                                <p id="postMessage">Are you sure you want to post: </p>
+                            </div>
+                            <div class="modal-footer">
+                                <input class="modal-action modal-close btn blue darken-3 right subBtn" type="submit" value="Post" onclick="redirect()" rel="nofollow" style="margin-left:20px">
+                                <a class="modal-action modal-close btn grey lighten-1 right cancelBtn">CANCEL</a>
+                            </div>
+                        </div>
                         <div id="errModal" class="modal">
                             <div class="modal-content">
                                 <h4>No gym chosen.</h4>
@@ -48,16 +58,6 @@
                                 <button type="button" style="background-color: transparent; border-color: transparent;" value="Main_Gym" class="gymButtonChoose" class="btn-floating btn-large waves-effect waves-light blue darken-4"><img class="gymImg responsive-img" src="./img/main.png" width="120" height="120" /></button>
                                 <button type="button" style="background-color: transparent; border-color: transparent;" value="CanyonView" class="gymButtonChoose" class="btn-floating btn-large waves-effect waves-light blue darken-4"><img class="gymImg responsive-img" src="./img/canyonview.png" width="120" height="120" /></button>
                                 <input id="gym" hidden />
-                            </div>
-                            <div id="myModal" class="modal">
-                                <div class="modal-content">
-                                    <h4 align="left">Submit Post?</h4>
-                                    <p id="postMessage">Are you sure you want to post: </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <input class="modal-action modal-close btn blue darken-3 right subBtn" type="submit" value="Post" onclick="redirect()" rel="nofollow" style="margin-left:20px">
-                                    <a class="modal-action modal-close btn grey lighten-1 right cancelBtn">CANCEL</a>
-                                </div>
                             </div>
                         </form>
                         <Button id="submitnewpost" class="btn-large blue darken-4">Post</Button>
