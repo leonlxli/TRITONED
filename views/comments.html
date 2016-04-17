@@ -24,9 +24,8 @@
                                 <span class="posted">{{posted}}</span>
                             </div>
                         </div>
-                        <br />
                         <div class="message-content" id="originalPost" postID="{{_id}}">
-                            <h5 class="black-text">{{message}}</h5>
+                            <h2 class="black-text">{{message}}</h2>
                             <br>
                         </div>
                     </div>
@@ -43,7 +42,7 @@
                                 </div>
                             </div>
                             <div class="message-content">
-                                <h5>{{message}}</h5>
+                                <blockquote style="border-color: #1565C0;"><h5>{{message}}</h5></blockquote>
                             </div>
                             <div class="delete" sameUser="{{sameUser}}" commentID="{{_id}}">
                             </div>
@@ -67,7 +66,7 @@
                 <form id="send_comment" action="#" class="center center-block">
                     <div>
                         <h6 class="white-text">Type up a comment here:<h6></div>
-        <input id="comment_content" class="white blue-text text-darken-4 container" placeholder="Type a new comment and click 'Post Comment'!" autocomplete="off" parent="{{_id}}" required/>
+        <input id="comment_content" class="white-text text-darken-4 container" placeholder="Type a new comment and click 'Post Comment'!" autocomplete="off" parent="{{_id}}" required/>
         <!--<input type="submit" value="Submit" class="btn blue darken-4">-->
 
         <div id="myModal" class = "modal" style="z-index:9999; top:20%">
@@ -94,6 +93,7 @@
     </form>
 
         <center>
+        <br />
         <Button id="submitnewcomment" class="btn-large blue darken-4">Post Comment</Button>
         <center>
 
