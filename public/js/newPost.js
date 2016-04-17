@@ -41,6 +41,7 @@ btn.onclick = function() {
             //need to choose a gym
             console.log("error module displayed")
             errmodal.style.display = "block";
+            $('#errModal').leanModal();
         }
     }
     else {
