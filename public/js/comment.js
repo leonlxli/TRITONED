@@ -6,12 +6,12 @@ function messageTemplate(template) {
         '<div class="user">' +
         '<div class="user-image">' +
         '<img src="' + template.photo + '" alt="" style="vertical-align: middle; padding-right: 3px;">' +
-        '<span class="username"><b>' + template.username + '</b> posted on </span>' +
+        '<b>' + template.username + '</b><span class="username"> posted on </span>' +
         '<span class="posted">' + template.posted + '</span>' +
         '</div>' +
         '</div>' +
         '<div class="message-content">' +
-        '<h5>' + template.message + '</h5>' +
+        '<h5><blockquote style="border-color: #1565C0;">' + template.message + '</blockquote></h5>' +
         '</div>' +
         '<div class="delete" sameUser="true" commentID="' + template.commentID + '">' +
         '<button class="btn blue darken-3 white-text right" href="#" onclick="deleteCommentModal(\'' + template.commentID + '\')">delete</a>'+
