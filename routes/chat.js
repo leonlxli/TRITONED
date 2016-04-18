@@ -19,7 +19,7 @@ exports.view = function(req, res) {
         // console.log(res);
         if (!req.query.gym || req.query.gym == 'all') {
             mongoose.model('Posts').find({}).sort({
-                posted: -1
+                timeSinceE: -1
             }).exec(function(err, posts) {
                 for (var i = 0; i < posts.length; i++) {
                     if (posts[i].user.username == req.user.username) {
@@ -45,7 +45,7 @@ exports.view = function(req, res) {
             mongoose.model('Posts').find({
                 gym: req.query.gym
             }).sort({
-                posted: -1
+                timeSinceE: -1
             }).exec(function(err, posts) {
                 for (var i = 0; i < posts.length; i++) {
                     if (posts[i].user.username == req.user.username) {

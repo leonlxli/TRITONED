@@ -1,21 +1,25 @@
 var socket = io();
 
+function redirect() {
+    console.log('redirecting...');
+    window.location.href = '/chat';
+}
 
 (function($) {
     "use strict";
 
     $('#send_post').submit(function(e) {
         e.preventDefault();
-
+        console.log("sendingggggg");
         var message = $('#message_content').val();
         var gym = $('#gym').val();
         $.post('/newPost', {
             message: message,
             gym: gym
         }, function(data, success) {
-            console.log("emitting");
-            console.log(data);
+            console.log("I'm emitting")
             socket.emit('newsfeed', data);
+            redirect();
         });
     })
 })($);
@@ -63,12 +67,6 @@ okBtn.onclick = function() {
 okBtn2.onclick = function() {
     console.log("ok button pressed");
     errmodalmsg.style.display = "none";
-}
-
-
-function redirect() {
-    console.log('redirecting...');
-    window.location.href = '/chat';
 }
 
 $('.gymImg').mouseenter(function() {

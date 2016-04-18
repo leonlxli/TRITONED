@@ -19,7 +19,7 @@ var postSchema = mongoose.Schema({
         type: Boolean,
         default: false
     },
-
+    "timeSinceE": Number,
     'user': {
         'username': String,
         'photo': String
@@ -27,6 +27,7 @@ var postSchema = mongoose.Schema({
     'message': String,
     'posted': String,
     'comments': [{
+        "timeSinceE": Number,
         'sameUser': {
             type: Boolean,
             default: false
