@@ -54,7 +54,9 @@ $('.gymButton').mouseenter(function() {
             $(buttons[i]).addClass("selected")
             $(buttons[i]).removeClass("hovered")
             $('#gymvalue').attr("value", $(buttons[i]).attr("me"));
-            console.log($('#gymvalue').attr("value"));
+            $('#newMessages').empty();
+            document.title = "TRITONED";
+
         }
     }
 
@@ -162,7 +164,7 @@ function messageTemplate(template) {
         '<div class="card white">' +
         '<div class="card-content black-text">' +
         '<img style="vertical-align:middle;" src="' + template.user.photo + '" />' +
-        '<span><b>  ' + template.user.username + '</b> posted in <a class="blue-text"><i>' + template.gym + '</i></a> on ' + template.posted + ':</p></span>' +
+        '<b>  ' + template.user.username + '</b><span class="username"> posted about <a class="blue-text"><i>' + template.gym + '</i></a> on ' + template.posted + ':</p></span>' +
         '<div class="card-title">' +
         '<p>' + template.message + '</p>' +
         '</div>' +
