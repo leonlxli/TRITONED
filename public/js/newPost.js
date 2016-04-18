@@ -1,5 +1,9 @@
+var socket = io();
+
+
 (function($) {
     "use strict";
+
     $('#send_post').submit(function(e) {
         e.preventDefault();
 
@@ -8,9 +12,10 @@
         $.post('/newPost', {
             message: message,
             gym: gym
-        }, function(err, success) {
-            console.log(err);
-            console.log(success);
+        }, function(data, success) {
+            console.log("emitting");
+            console.log(data);
+            socket.emit('newsfeed', data);
         });
     })
 })($);

@@ -197,8 +197,6 @@ function messageTemplate(template) {
     });
 
     socket.on('newsfeed', function(data) {
-        var parsedData = JSON.parse(data);
-        parsedData.posted = parsedData.posted;
-        $('#messages').prepend($('<div>').html(messageTemplate(parsedData)));
+       console.log(data);
     });
 })($);

@@ -35,6 +35,7 @@ exports.post = function(req, res) {
             if (err) {
                 console.log(err);
                 res.json({
+                    'user': req.user,
                     'error': err
                 })
             } else {
