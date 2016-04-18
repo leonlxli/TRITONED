@@ -34,6 +34,7 @@ function addPosts() {
         }
         appendButton();
         $('#newMessages').empty();
+        document.title = "TRITONED";
     });
 }
 
@@ -227,6 +228,7 @@ function messageTemplate(template) {
             console.log(dat.post.gym);
             if ($("#gymvalue").attr("value") == 'all' || $("#gymvalue").attr("value") == dat.post.gym) {
                 $('#newMessages').append($('<div id="messBtn">').html('<a id="newMessage" class="btn blue darken-3 row center-block" onclick="addPosts()">Load new posts</a>'));
+                document.title = "TRITONED (new)";
             }
         }
 
