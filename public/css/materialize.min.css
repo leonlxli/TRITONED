@@ -17,6 +17,12 @@ html {
     color:#9197A3;
 }
 
+#newMessage{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .selected {
     border-color: yellow;
     border-style: solid;

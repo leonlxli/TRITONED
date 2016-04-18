@@ -1,6 +1,12 @@
 var models = require('../models');
 var mongoose = require('mongoose');
 var dateFormat = require('dateformat');
+const express = require("express");
+ const app = express();
+
+const http = require("http").createServer(app);
+
+var socket = require('socket.io')(http);
 
 
 exports.view = function(req, res) {
@@ -16,13 +22,16 @@ exports.view = function(req, res) {
 };
 
 exports.post = function(req, res) {
-    console.log(req.body);
     var now = new Date();
+    var seconds = now.getTime()/1000;
+    console.log("seconds");
+    console.log(seconds);
     var date = dateFormat(now, "h:MM TT, dddd, mmmm dS, yyyy");
-    console.log(typeof(date));
+    console.log(date);
     if (req.user) {
         var newPost = new models.Posts({
             'gym': req.body.gym,
+            'timeSinceE':seconds,
             'message': req.body.message,
             'user': {
                 'username': req.user.username,
@@ -33,11 +42,17 @@ exports.post = function(req, res) {
         });
         newPost.save(function(err, suc) {
             if (err) {
-                console.log(err);
+                // console.log("errr========");
+                // console.log(err);
+                // socket.emit('newsfeed', err);
                 res.json({
+                    'user': req.user,
                     'error': err
                 })
             } else {
+                console.log("suc ============");
+                // console.log(suc);
+                // socket.emit('newsfeed', suc);
                 res.json({
                     'post': suc
                 })

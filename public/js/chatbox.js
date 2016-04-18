@@ -20,6 +20,24 @@ function appendButton() {
     }
 }
 
+function addPosts() {
+    gym = $("#gymvalue").attr("value");
+    console.log(gym)
+    $.get('/chat', {
+        gym: gym
+    }, function(data) {
+        console.log(data)
+        $('#messages').empty();
+        console.log(data);
+        for (var i = 0; i < data.newsfeed.length; i++) {
+            $('#messages').append($('<div>').html(messageTemplate(data.newsfeed[i])));
+        }
+        appendButton();
+        $('#newMessages').empty();
+        document.title = "TRITONED";
+    });
+}
+
 $('.gymButton').mouseenter(function() {
     if (!$(this).hasClass("selected")) {
         $(this).addClass("hovered");
@@ -32,10 +50,15 @@ $('.gymButton').mouseenter(function() {
         if (buttons[i] != this) {
             $(buttons[i]).removeClass("selected")
         } else {
+            console.log($(buttons[i]).attr("me"));
             $(buttons[i]).addClass("selected")
             $(buttons[i]).removeClass("hovered")
+            $('#gymvalue').attr("value", $(buttons[i]).attr("me"));
+            console.log($('#gymvalue').attr("value"));
         }
     }
+
+
 });
 
 $(document).ready(function() {
@@ -71,22 +94,23 @@ function deletePost(postID) {
     })
 }
 
+
 function gymChange(e) {
     var gym = e.getAttribute("value");
-    var data = new FormData();
-    var url = '/chat?gym=' + gym;
+    console.log(gym);
+    // var data = new FormData();
     // window.location.href = url;
-    data.append('gym', gym);
+    // data.append('gym', gym);
     $.get('/chat', {
         gym: gym
     }, function(data) {
+        console.log(data);
         $('#messages').empty();
         for (var i = 0; i < data.newsfeed.length; i++) {
             $('#messages').append($('<div>').html(messageTemplate(data.newsfeed[i])));
         }
         appendButton();
     });
-    // socket.emit('getGym', gym);
 }
 
 // $(".comments").click(function() {
@@ -197,8 +221,16 @@ function messageTemplate(template) {
     });
 
     socket.on('newsfeed', function(data) {
-        var parsedData = JSON.parse(data);
-        parsedData.posted = parsedData.posted;
-        $('#messages').prepend($('<div>').html(messageTemplate(parsedData)));
+        console.log("socket=======");
+        if ($("#newMessages").children().length == 0) {
+            console.log($("#gymvalue").attr("value"));
+            var dat = JSON.parse(data);
+            console.log(dat.post.gym);
+            if ($("#gymvalue").attr("value") == 'all' || $("#gymvalue").attr("value") == dat.post.gym) {
+                $('#newMessages').append($('<div id="messBtn">').html('<a id="newMessage" class="btn blue darken-3 row center-block" onclick="addPosts()">Load new posts</a>'));
+                document.title = "TRITONED (new)";
+            }
+        }
+
     });
 })($);

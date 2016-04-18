@@ -151,7 +151,6 @@ io.use(function(socket, next) {
 var currentlyOnline = 0;
 
 io.on('connection', function(socket) {
-    console.log('user connected');
     currentlyOnline += 1;
     io.emit('online', JSON.stringify({
         online: currentlyOnline
@@ -164,7 +163,6 @@ io.on('connection', function(socket) {
                 }));
             }
 
-            console.log('user disconnected');
         })
         // socket.on('newComment', function(comment) {
         //     var user = socket.request.session.passport.user;
@@ -204,18 +202,9 @@ io.on('connection', function(socket) {
         // });
     socket.on('newsfeed', function(msg) {
         var user = socket.request.session.passport.user;
-
-        var newNewsFeed = new models.Posts({
-            'user': {
-                'username': user.username,
-                'photo': user.photos[0].value
-            },
-            'message': msg
-        });
-        newNewsFeed.save(function(err, news) {
-            if (err) console.log(err);
-            io.emit('newsfeed', JSON.stringify(news));
-        });
+        console.log('newsfeed========');
+        console.log(msg)
+        io.emit('newsfeed', JSON.stringify(msg));
     });
 })
 
