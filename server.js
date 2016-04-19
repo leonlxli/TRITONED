@@ -132,6 +132,7 @@ app.get('/auth/twitter/callback',
         failureRedirect: '/'
     }));
 app.get('/comments', router.comments.view);
+app.get('/comments/get', router.comments.getComments);
 app.post('/comments', router.comments.post);
 app.post('/comments/delete', router.comments.delete);
 app.get('/logout', function(req, res) {
@@ -200,6 +201,12 @@ io.on('connection', function(socket) {
         //         });
         //     })
         // });
+    socket.on('comment', function(msg) {
+        var user = socket.request.session.passport.user;
+        console.log('comment========');
+        console.log(msg)
+        io.emit('comment', JSON.stringify(msg));
+    });
     socket.on('newsfeed', function(msg) {
         var user = socket.request.session.passport.user;
         console.log('newsfeed========');

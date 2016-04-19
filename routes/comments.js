@@ -10,11 +10,13 @@ exports.view = function(req, res) {
             if (err) {
                 console.log(err);
             } else {
-                for (var i = 0; i < post.comments.length; i++) {
-                    console.log(post)
-                    if (post.comments[i].username == req.user.username) {
-                        post.comments[i].sameUser = true;
-                        console.log(post.comments[i]);
+                if (post.comments) {
+                    for (var i = 0; i < post.comments.length; i++) {
+                        console.log(post)
+                        if (post.comments[i].username == req.user.username) {
+                            post.comments[i].sameUser = true;
+                            console.log(post.comments[i]);
+                        }
                     }
                 }
                 res.render("comments", post);
@@ -41,6 +43,26 @@ exports.delete = function(req, res) {
     })
 }
 
+exports.getComments = function(req, res) {
+    if (req.user) {
+        console.log("req.query ===========")
+        console.log(req.query);
+        mongoose.model('Posts').findOne({
+            _id: req.query.post_id
+        }, function(err, post) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('posttttt===========');
+                console.log(err);
+                console.log(post)
+                res.json(post);
+            }
+        })
+    }
+
+}
+
 exports.post = function(req, res) {
     // console.log("posting");
     // console.log(req.body);
@@ -62,14 +84,8 @@ exports.post = function(req, res) {
             // console.log(/posts.comments[posts.comments.length-1]._id)
             posts.save();
             // console.log("saved -----------------")
-            // console.log(posts);
-            res.json({
-                'photo': req.user.photos[0].value,
-                'message': req.body.comment,
-                'username': req.user.username,
-                'posted': date,
-                'commentID': posts.comments[posts.comments.length - 1]._id
-            });
+            console.log(posts);
+            res.json(posts);
         }
     })
 };

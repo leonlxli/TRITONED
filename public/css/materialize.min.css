@@ -17,6 +17,10 @@ html {
     color:#9197A3;
 }
 
+#loadComments{
+    width:100%;
+}
+
 #newMessage{
     display: block;
     margin-right: auto;

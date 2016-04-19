@@ -11,8 +11,6 @@ var socket = require('socket.io')(http);
 
 exports.view = function(req, res) {
     if (req.user) {
-        // console.log(req.user);
-        // console.log(req.user._json.profile_image_url)
         res.render("newPost", {
             'profPic': req.user._json.profile_image_url
         });
@@ -23,6 +21,7 @@ exports.view = function(req, res) {
 
 exports.post = function(req, res) {
     var now = new Date();
+    console.log(now);
     var seconds = now.getTime()/1000;
     console.log("seconds");
     console.log(seconds);
@@ -50,7 +49,6 @@ exports.post = function(req, res) {
                     'error': err
                 })
             } else {
-                console.log("suc ============");
                 // console.log(suc);
                 // socket.emit('newsfeed', suc);
                 res.json({

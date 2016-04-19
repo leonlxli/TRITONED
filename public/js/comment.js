@@ -1,3 +1,39 @@
+var socket = io();
+
+var posted = false;
+
+socket.on('comment', function(data) {
+    console.log("socket=======");
+    var dat = JSON.parse(data);
+    if (dat.postID == $('#comment_content').attr("parent")) {
+        if (posted) {
+            addComments();
+            posted = false;
+        } else if($("#commentBtnContainer").children().length == 0) {
+            $('#commentBtnContainer').append($('<div id="cmtBtn">').html('<a id="loadComments" class="btn blue darken-3 row center-block" onclick="addComments()">Load new posts</a>'));
+        }
+    }
+
+});
+
+function addComments() {
+    var postID = $("#originalPost").attr("postID");
+    $.get('/comments/get', {
+        post_id: postID
+    }, function(data) {
+        $("#comments").empty();
+        var comments = data.comments;
+        renderComments(comments);
+    });
+}
+
+function renderComments(comments) {
+    for (var i = 0; i < comments.length; i++) {
+        $('#comments').append($('<li>').html(messageTemplate(comments[i])));
+    }
+    $('#commentBtnContainer').empty();
+}
+
 function messageTemplate(template) {
     console.log(template);
     var result =
@@ -14,7 +50,7 @@ function messageTemplate(template) {
         '<h5><blockquote style="border-color: #1565C0;">' + template.message + '</blockquote></h5>' +
         '</div>' +
         '<div class="delete" sameUser="true" commentID="' + template.commentID + '">' +
-        '<button class="btn blue darken-3 white-text right" href="#" onclick="deleteCommentModal(\'' + template.commentID + '\')">delete</a>'+
+        '<button class="btn blue darken-3 white-text right" href="#" onclick="deleteCommentModal(\'' + template.commentID + '\')">delete</a>' +
         '</div>' +
         '<br>' +
         '<br>' +
@@ -61,8 +97,13 @@ $('#send_comment').submit(function(e) {
         comment: comment_content,
         post_id: original_postID
     }, function(my_comment) {
-        console.log(my_comment)
-        $('#comments').append($('<li>').html(messageTemplate(my_comment)));
+        posted = true;
+        var dat = {
+            postID: original_postID,
+            comment: my_comment
+        };
+        console.log(dat);
+        socket.emit('comment', dat);
         $('#comment_content').val('');
     });
     // $user_input.val('');
@@ -71,7 +112,6 @@ $('#send_comment').submit(function(e) {
 $(document).ready(function() {
     $('select').material_select();
     $('.modal-trigger').leanModal();
-    // $('abbr.timeago').timeago();
     putDeleteButtons();
 });
 
