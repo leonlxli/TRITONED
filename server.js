@@ -19,7 +19,8 @@ var router = {
     index: require("./routes/index"),
     chat: require("./routes/chat"),
     newPost: require("./routes/newPost"),
-    comments: require("./routes/comments")
+    comments: require("./routes/comments"),
+    invalid: require("./routes/invalid")
 };
 
 var parser = {
@@ -131,6 +132,7 @@ app.get('/auth/twitter/callback',
         successRedirect: '/chat',
         failureRedirect: '/'
     }));
+
 app.get('/comments', router.comments.view);
 app.get('/comments/get', router.comments.getComments);
 app.post('/comments', router.comments.post);
@@ -140,6 +142,13 @@ app.get('/logout', function(req, res) {
     res.redirect('/');
 });
 app.post('/chat/delete', router.chat.delete);
+app.get('/signedin', router.invalid.getUser);
+
+app.get('/invalid', router.invalid.view);
+app.all('*', function(req, res) {
+  res.redirect('/invalid');
+});
+
 
 
 // More routes here if needed
