@@ -5,9 +5,6 @@ An application for people working out/seeking to work out to share workout tips,
 
 Joel:
 - Paper prototype
-- Preliminary application design and ideas
-- Nielsen Heuristics finalization
-- App critiquing to tailor to heuristics
 
 Crystal:
 - Neilsen’s Heuristics draft
@@ -15,6 +12,9 @@ Crystal:
 - Design throughout each iteration
 - Frontend: styling all around, gym buttons, logo, colorization, adding constraints 
 - Backend: confirmation messages, responsive loading for gym buttons
+- Preliminary application design and ideas
+- Nielsen Heuristics finalization
+- App critiquing to tailor to heuristics
 
 John:
 - Frontend: preliminary application of Materialize CSS, design fixes throughout
@@ -24,6 +24,7 @@ Leon:
 - App skeleton (backend); main app functions (delete, comments, etc.)
 - Frontend: preliminary login page, highlights
 - Socket.io
+- Scrolling
 
 **Neilsen’s Heuristics:**
 
