@@ -30,6 +30,7 @@ Leon:
 
 Visibility of system status
 - Users know where they are at all time and what they will be able to click since all buttons are responsive to hovering and popups/pages react accordingly.
+- When users are viewing posts under a certain gym, if that gym gets a new post, the user is given the option of updating their feed of that gym with the new posts. The same thing applies to the comments of posts. If a user is viewing the comments of the post, and another user submits a comment under the same post, then the user gets the option to update the post's comments.
  
 Match between system and the real world
 - We implemented natural languages and concepts that people are already familiar with (like “Post”, “Comments”, “Delete”). Nothing is new or hard to understand. Posts are also organized by chronological order (newest at the top), which is what people want to see and what is useful for them (making info appear in a natural and logical order).
@@ -47,12 +48,14 @@ Error prevention
 
 Recognition rather than recall
 - The similarity between the pages of our app reduces the user’s memory load. There are no hidden options; every option available to the user is clearly shown and labeled with clear directions so the user is not lost at any time.
+- Each time the user is about to post or make a comment, our app notifies the user of his/her message that they are about to post and made sure that they are correct.
 
 Flexibility and efficiency of use
 - Novices to expert users can utilize our app with ease. We implemented a following navigational bar so that users can move around the app quicker without having to scroll to the top.
  
 Aesthetic and minimalist design
 - We kept our design straight to the point, only adding instructions when necessary. There are also no hidden choices for the users to make, everything is presented to the user clearly.
+- The app only shows 10 posts a page unless the user asks for more.
 
 Help users recognize, diagnose, and recover from errors
 - In places where errors can happen, we inserted error messages that specified the error and allowed the user to go fix their mistake or cancel the operation overall. When making a new post, if the user tries to submit the post without any text or without selecting a gym, an error popup will appear telling the user what piece of information is missing. When commenting, the user needs to enter in at least one character.
