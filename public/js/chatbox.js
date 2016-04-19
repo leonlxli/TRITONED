@@ -280,7 +280,7 @@ function messageTemplate(template) {
                 data.newsfeed.unshift(dat.post);
                 index = 0;
                 limit = limit - 10;
-                $('#newMessages').append($('<div id="messBtn">').html('<a id="newMessage" class="btn blue darken-3 row center-block" onclick="addPosts()">Load new posts</a>'));
+                $('#newMessages').append($('<div id="messBtn" class= "col s10 offset-s1">').html('<a id="newMessage" class="btn blue darken-3 row center-block" onclick="addPosts()">Load new posts</a>'));
                 document.title = "TRITONED (new)";
             }
         }

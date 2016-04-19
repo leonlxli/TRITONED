@@ -12,33 +12,42 @@ html {
 .username {
     color: #9197A3;
 }
+#comments{
+    margin-top: 50px;
+}
 
 .posted {
     color: #9197A3;
 }
 
 #loadComments {
+    border-color: white;
+    border-style: solid;
+    border-width: 1px;
     width: 100%;
 }
 
+.socketButton {}
+
 #loadMoreBtn {
+    border-color: white;
+    border-style: solid;
+    border-width: 1px;
     margin-right: auto;
     margin-left: auto;
     width: 100%;
-    border-color: white;
-    border-style: solid;
-    border-width:1px;
-    height:100%;
+    height: 100%;
 }
 
-#loadMore {
-
-}
+#loadMore {}
 
 #newMessage {
     display: block;
     margin-right: auto;
     margin-left: auto;
+    border-color: white;
+    border-style: solid;
+    border-width: 1px;
 }
 
 .selected {
@@ -59,7 +68,6 @@ html {
 }
 
 .posts {
-    padding-top: 50px;
 }
 
 .veil {
@@ -3391,7 +3399,7 @@ input[type=range]+.thumb {
 .row {
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 20px
+    margin-bottom: 10px
 }
 
 .row:after {
