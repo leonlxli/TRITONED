@@ -1,6 +1,40 @@
 var socket = io();
 var xhttp = new XMLHttpRequest();
 
+var postarry = [];
+var data;
+var index = 0;
+var limit = 0;
+
+$(document).ready(function() {
+    $.get('/chat', {
+        gym: "all"
+    }, function(dat) {
+        console.log(dat)
+        data = dat;
+        placePosts();
+    });
+
+    $('.modal-trigger').leanModal();
+    $('select').material_select();
+    appendButton();
+    formatComments();
+    $("#all").addClass("selected");
+
+});
+
+function formatComments() {
+    var comments = $('.comments');
+    for (var i = 0; i < comments.length; i++) {
+        var numOfComments = $(comments[i]).attr("value");
+        if (numOfComments == 1) {
+            $(comments[i]).html(numOfComments + ' comment')
+        } else {
+            $(comments[i]).html(numOfComments + ' comments')
+        }
+    }
+}
+
 function appendButton() {
 
     var deleteButtonArray = $('.delete');
@@ -20,21 +54,41 @@ function appendButton() {
     }
 }
 
+function placePosts() {
+    console.log("Before")
+    if (index < data.newsfeed.length) {
+        limit += 10;
+        console.log("in")
+        $('#messages').empty();
+        console.log("before");
+        console.log(index);
+        var i = 0;
+        index = 0;
+        while (i < limit && i < data.newsfeed.length) {
+            $('#messages').append($('<div>').html(messageTemplate(data.newsfeed[index])));
+            index++;
+            i++;
+        }
+        if (index == limit && $('#LoadMore').children().length == 0) {
+            $('#LoadMore').append($('<div id="loadMore" class= "col s10 offset-s1">').html('<a id="loadMoreBtn" class="btn blue darken-3 row center-block" onclick="placePosts()">Load older posts</a>'));
+        }
+        if (index == data.newsfeed.length) {
+            $('#LoadMore').empty();
+        }
+
+        appendButton();
+        $('#newMessages').empty();
+        document.title = "TRITONED";
+    }
+}
+
 function addPosts() {
     gym = $("#gymvalue").attr("value");
     console.log(gym)
     $.get('/chat', {
         gym: gym
     }, function(data) {
-        console.log(data)
-        $('#messages').empty();
-        console.log(data);
-        for (var i = 0; i < data.newsfeed.length; i++) {
-            $('#messages').append($('<div>').html(messageTemplate(data.newsfeed[i])));
-        }
-        appendButton();
-        $('#newMessages').empty();
-        document.title = "TRITONED";
+        placePosts(data);
     });
 }
 
@@ -56,29 +110,14 @@ $('.gymButton').mouseenter(function() {
             $('#gymvalue').attr("value", $(buttons[i]).attr("me"));
             $('#newMessages').empty();
             document.title = "TRITONED";
-
+            limit = 0;
+            index = 0;
         }
     }
 
 
 });
 
-$(document).ready(function() {
-    $('.modal-trigger').leanModal();
-    $('select').material_select();
-    appendButton();
-    var comments = $('.comments');
-    for (var i = 0; i < comments.length; i++) {
-        var numOfComments = $(comments[i]).attr("value");
-        if (numOfComments == 1) {
-            $(comments[i]).html(numOfComments + ' comment')
-        } else {
-            $(comments[i]).html(numOfComments + ' comments')
-        }
-    }
-    $("#all").addClass("selected");
-
-});
 
 function deletePostModal(postID) {
     console.log("test");
@@ -88,9 +127,19 @@ function deletePostModal(postID) {
 function deletePost(postID) {
     $.post('/chat/delete', {
         postID: postID,
-    }, function(data, succ) {
-        if (data.succ) {
-            // console.log(data)
+    }, function(dat, succ) {
+        if (dat.succ) {
+            for (var i = 0; i < data.newsfeed.length; i++) {
+                console.log("helooooo");
+                if (data.newsfeed[i]._id == postID) {
+                    console.log(i);
+                    console.log(postID)
+                    console.log(data.newsfeed[i]._id)
+                    data.newsfeed.splice(i, 1);
+                    console.log(postID)
+                    console.log(data.newsfeed[i]._id)
+                }
+            }
             $("#post" + postID).remove();
         }
     })
@@ -105,13 +154,11 @@ function gymChange(e) {
     // data.append('gym', gym);
     $.get('/chat', {
         gym: gym
-    }, function(data) {
-        console.log(data);
+    }, function(dat) {
+        console.log(dat);
         $('#messages').empty();
-        for (var i = 0; i < data.newsfeed.length; i++) {
-            $('#messages').append($('<div>').html(messageTemplate(data.newsfeed[i])));
-        }
-        appendButton();
+        data = dat;
+        placePosts();
     });
 }
 
@@ -222,13 +269,17 @@ function messageTemplate(template) {
         // $('#usersOnline').html(data.online);
     });
 
-    socket.on('newsfeed', function(data) {
+    socket.on('newsfeed', function(datem) {
         console.log("socket=======");
         if ($("#newMessages").children().length == 0) {
             console.log($("#gymvalue").attr("value"));
-            var dat = JSON.parse(data);
-            console.log(dat.post.gym);
+            var dat = JSON.parse(datem);
+            console.log(data.newsfeed[0])
+            console.log(dat);
             if ($("#gymvalue").attr("value") == 'all' || $("#gymvalue").attr("value") == dat.post.gym) {
+                data.newsfeed.unshift(dat.post);
+                index = 0;
+                limit = limit - 10;
                 $('#newMessages').append($('<div id="messBtn">').html('<a id="newMessage" class="btn blue darken-3 row center-block" onclick="addPosts()">Load new posts</a>'));
                 document.title = "TRITONED (new)";
             }

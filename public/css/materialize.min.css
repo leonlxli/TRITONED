@@ -9,19 +9,33 @@ html {
     overflow: hidden;
 }
 
-.username{
-    color:#9197A3;
+.username {
+    color: #9197A3;
 }
 
-.posted{
-    color:#9197A3;
+.posted {
+    color: #9197A3;
 }
 
-#loadComments{
-    width:100%;
+#loadComments {
+    width: 100%;
 }
 
-#newMessage{
+#loadMoreBtn {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    border-color: white;
+    border-style: solid;
+    border-width:1px;
+    height:100%;
+}
+
+#loadMore {
+
+}
+
+#newMessage {
     display: block;
     margin-right: auto;
     margin-left: auto;
@@ -34,31 +48,32 @@ html {
     border-radius: 50%;
 }
 
-.newPostContainer{
+.newPostContainer {
     display: inline-block;
     width: 100%;
-
 }
 
-#message_content{
+#message_content {
     height: 4rem;
-    width:80%;
+    width: 80%;
 }
-.posts{
+
+.posts {
     padding-top: 50px;
 }
 
 .veil {
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-  background: linear-gradient(to bottom,rgba(0, 0, 0, .7) 30%, rgba(0, 0, 0, .3) 50%, rgba(0, 0, 0, .2) 80%, rgba(0, 0, 0, 0) 100%);
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .7) 30%, rgba(0, 0, 0, .3) 50%, rgba(0, 0, 0, .2) 80%, rgba(0, 0, 0, 0) 100%);
 }
+
 .veil2 {
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, .6) 60%,  rgba(0, 0, 0, .4) 80%, rgba(0, 0, 0, 0) 100%);
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .6) 60%, rgba(0, 0, 0, .4) 80%, rgba(0, 0, 0, 0) 100%);
 }
 
 .hovered {
@@ -122,7 +137,6 @@ body {
     padding: 30px;
 }
 
-
 #backgroundIMGIndex {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url('../img/beachworkout1.jpg');
     /*background-size: 100%;*/
@@ -134,7 +148,6 @@ body {
     background-size: cover;
     background-position: center;
 }
-
 
 #backgroundIMG {
     overflow: auto;
@@ -3337,8 +3350,7 @@ input[type=range]+.thumb {
     width: 90%
 }
 
-
-.paddingTop{
+.paddingTop {
     padding-top: 50px;
 }
 
