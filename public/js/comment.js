@@ -9,7 +9,7 @@ socket.on('comment', function(data) {
         if (posted) {
             addComments();
             posted = false;
-        } else if($("#commentBtnContainer").children().length == 0) {
+        } else if ($("#commentBtnContainer").children().length == 0) {
             $('#commentBtnContainer').append($('<div id="cmtBtn">').html('<a id="loadComments" class="btn blue darken-3 row center-block" onclick="addComments()">Load new posts</a>'));
         }
     }
@@ -24,6 +24,8 @@ function addComments() {
         $("#comments").empty();
         var comments = data.comments;
         renderComments(comments);
+        putDeleteButtons();
+
     });
 }
 
@@ -49,8 +51,7 @@ function messageTemplate(template) {
         '<div class="message-content">' +
         '<h5><blockquote style="border-color: #1565C0;">' + template.message + '</blockquote></h5>' +
         '</div>' +
-        '<div class="delete" sameUser="true" commentID="' + template.commentID + '">' +
-        '<button class="btn blue darken-3 white-text right" href="#" onclick="deleteCommentModal(\'' + template.commentID + '\')">delete</a>' +
+        '<div class="delete" sameUser="'+ template.sameUser+'" commentID="' + template.commentID + '">' +
         '</div>' +
         '<br>' +
         '<br>' +
@@ -110,6 +111,7 @@ $('#send_comment').submit(function(e) {
 })
 
 $(document).ready(function() {
+    console.log()
     $('select').material_select();
     $('.modal-trigger').leanModal();
     putDeleteButtons();

@@ -54,8 +54,14 @@ exports.getComments = function(req, res) {
                 console.log(err);
             } else {
                 console.log('posttttt===========');
-                console.log(err);
                 console.log(post)
+                for (var i = 0; i < post.comments.length; i++) {
+                    console.log(post)
+                    if (post.comments[i].username == req.user.username) {
+                        post.comments[i].sameUser = true;
+                        console.log(post.comments[i]);
+                    }
+                }
                 res.json(post);
             }
         })
