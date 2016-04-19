@@ -142,7 +142,7 @@ app.get('/logout', function(req, res) {
     res.redirect('/');
 });
 app.post('/chat/delete', router.chat.delete);
-app.get('/signedin', router.invalid.getUser);
+// app.get('/signedin', router.invalid.getUser);
 
 app.get('/invalid', router.invalid.view);
 app.all('*', function(req, res) {
